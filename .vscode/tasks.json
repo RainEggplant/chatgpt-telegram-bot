@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build:debug",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "label": "Build for Debugging",
+      "detail": "tsc --build && tsc --sourceMap"
+    }
+  ]
+}

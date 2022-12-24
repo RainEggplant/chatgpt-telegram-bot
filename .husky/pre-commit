@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Temporary workaround for excessive output
+# See https://github.com/okonet/lint-staged/issues/1164#issuecomment-1177561594
+# Check if /dev/tty works: https://stackoverflow.com/a/69088164
+if sh -c ": >/dev/tty" >/dev/null 2>/dev/null; then exec >/dev/tty 2>&1; fi
+
+pnpm lint-staged
+
+# Skip typechecking before tsc can work with lint-stage
+# https://github.com/microsoft/TypeScript/issues/27379
