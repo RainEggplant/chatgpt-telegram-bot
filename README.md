@@ -25,7 +25,6 @@ A ChatGPT bot for Telegram based on Node.js. Works with CloudFlare protection.
 - Typing indicator, Markdown formatting, ...
 - User-friendly logging
 
-
 ## Usage
 
 ### Start the server
@@ -58,14 +57,19 @@ To chat with the bot in Telegram, you can:
 > **Note** Make sure you have enabled the privacy mode of your bot before adding it to a group, or it will reply to every message in the group.
 
 The bot also has several commands.
+
 - `/help`: Show help information.
 - `/reset`: Reset the current chat thread and start a new one.
 - `/reload` (admin required): Refresh the ChatGPT session.
 
 > **Note** When using a command in a group, make sure to include a mention after the command, like `/help@chatgpt_bot`.
 
+## LICENSE
+
+[MIT License](LICENSE).
 
 ## Credits
+
 - [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api): Node.js client for the unofficial ChatGPT API.
 - [Node.js Telegram Bot API](https://github.com/yagop/node-telegram-bot-api): Telegram Bot API for NodeJS.
 - [🤖️ chatbot-telegram](https://github.com/Ciyou/chatbot-telegram): Yet another telegram ChatGPT bot.
