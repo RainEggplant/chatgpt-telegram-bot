@@ -1,9 +1,9 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![badge:version](https://img.shields.io/badge/version-1.0.1-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
-A ChatGPT bot for Telegram based on Node.js. Works with CloudFlare protection.
+A ChatGPT bot for Telegram based on Node.js. Works with Cloudflare protection.
 
 ## Features
 
@@ -20,9 +20,10 @@ A ChatGPT bot for Telegram based on Node.js. Works with CloudFlare protection.
 
 - Support for both private and group chats
 - Work in privacy mode (the bot can only see specific messages)
-- Authentication based on user and group IDs
+- Bot access control based on user and group IDs
 - Reset chat thread and refresh session with command
 - Typing indicator, Markdown formatting, ...
+- Cloudflare bypassing and CAPTCHA automation
 - User-friendly logging
 
 ## Usage
@@ -34,10 +35,11 @@ A ChatGPT bot for Telegram based on Node.js. Works with CloudFlare protection.
 To get started, follow these steps:
 
 1. Make a copy of the file `.env.example` and rename it as `.env`.
-2. In the `.env` file, enter your OpenAI account information and Telegram bot token.
-3. Specify the ID of the users and groups who are permitted to use this bot. Separate multiple IDs with commas (`,`). Note that all members of the specified groups will have access to the bot inside the group.
+2. In the `.env` file, enter your OpenAI account information and Telegram bot token. Set `isGoogleLogin` to `true` if you're using Google auth.
+3. Specify the ID of the users and groups who are permitted to use this bot. Separate multiple IDs with commas (`,`). Note that all members of the specified groups will have access to the bot inside the group. **If you leave these options empty, every person and group will be able to use the bot.**
 4. If the browser is not installed in the default location, specify its executable path. You can also specify proxy settings, if needed.
-5. You can also specify the command to invoke the bot in group chats. The default command is `/chat`.
+5. Specify the `NOPECHA_KEY` or `CAPTCHA_TOKEN` if you're using the corresponding CAPTCHA solver.
+6. You can also specify the command to invoke the bot in group chats. The default command is `/chat`.
 
 Then you can start the bot with:
 

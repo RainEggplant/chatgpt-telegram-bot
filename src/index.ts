@@ -4,7 +4,7 @@ import {ChatGPTAPIBrowser, ChatResponse} from 'chatgpt';
 import TelegramBot from 'node-telegram-bot-api';
 
 dotenv.config();
-const DEBUG = parseInt(process.env.DEBUG ?? '0');
+const DEBUG = parseInt(process.env.DEBUG || '0');
 
 interface ChatContext {
   conversationId?: string;
@@ -14,24 +14,28 @@ interface ChatContext {
 async function main() {
   // Initialize ChatGPT API.
   const api = new ChatGPTAPIBrowser({
-    email: process.env.OPENAI_EMAIL ?? '',
-    password: process.env.OPENAI_PASSWORD ?? '',
+    email: process.env.OPENAI_EMAIL || '',
+    password: process.env.OPENAI_PASSWORD || '',
+    isGoogleLogin:
+      process.env.IS_GOOGLE_LOGIN?.toLowerCase() == 'true' || false,
     executablePath: process.env.EXECUTABLE_PATH || undefined,
     proxyServer: process.env.PROXY || undefined,
+    nopechaKey: process.env.NOPECHA_KEY || undefined,
+    captchaToken: process.env.CAPTCHA_TOKEN || undefined,
   });
   await api.initSession();
   let chatContext: ChatContext = {};
   logWithTime('🔮 ChatGPT API has started...');
 
   // Initialize Telegram Bot
-  const bot = new TelegramBot(process.env.BOT_TOKEN ?? '', {polling: true});
+  const bot = new TelegramBot(process.env.BOT_TOKEN || '', {polling: true});
   const {username: botUsername} = await bot.getMe();
   logWithTime(`🤖 Bot @${botUsername} has started...`);
   const ownerIdList =
-    process.env.OWNER_ID?.split(',').map((x) => parseInt(x)) ?? [];
+    process.env.OWNER_ID?.split(',').map((x) => parseInt(x)) || [];
   const groupIdList =
-    process.env.GROUP_ID?.split(',').map((x) => parseInt(x)) ?? [];
-  const chatCmd = process.env.CHAT_CMD ?? '/chat';
+    process.env.GROUP_ID?.split(',').map((x) => parseInt(x)) || [];
+  const chatCmd = process.env.CHAT_CMD || '/chat';
 
   async function messageHandler(msg: TelegramBot.Message) {
     if (DEBUG >= 2) logWithTime(msg);
@@ -71,7 +75,7 @@ async function main() {
 
   async function authenticate(msg: TelegramBot.Message) {
     if (msg.chat.type === 'private') {
-      if (ownerIdList.indexOf(msg.chat.id) == -1) {
+      if (ownerIdList.length != 0 && ownerIdList.indexOf(msg.chat.id) == -1) {
         await bot.sendMessage(
           msg.chat.id,
           '⛔️ Sorry, you are not my owner. I cannot chat with you or execute your command.'
@@ -83,7 +87,7 @@ async function main() {
         return false;
       }
     } else {
-      if (groupIdList.indexOf(msg.chat.id) == -1) {
+      if (groupIdList.length != 0 && groupIdList.indexOf(msg.chat.id) == -1) {
         await bot.sendMessage(
           msg.chat.id,
           "⛔️ Sorry, I'm not supposed to work here. Please remove me from the group."
@@ -182,7 +186,7 @@ async function main() {
         msg.chat.type == 'private'
           ? 'private chat'
           : `group ${msg.chat.title} (${msg.chat.id})`;
-      logWithTime(`📩 Message from ${userInfo} in ${chatInfo}:\n`, text);
+      logWithTime(`📩 Message from ${userInfo} in ${chatInfo}:\n${text}`);
     }
 
     // Send a message to the chat acknowledging receipt of their message
@@ -210,7 +214,7 @@ async function main() {
         conversationId: res.conversationId,
         parentMessageId: res.messageId,
       };
-      if (DEBUG >= 1) logWithTime('📨 Response:\n', res.response);
+      if (DEBUG >= 1) logWithTime(`📨 Response:\n${res.response}`);
     } catch (err) {
       logWithTime('⛔️ ChatGPT API error:', (err as Error).message);
       bot.sendMessage(
