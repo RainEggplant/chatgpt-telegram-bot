@@ -66,6 +66,27 @@ The bot also has several commands.
 
 > **Note** When using a command in a group, make sure to include a mention after the command, like `/help@chatgpt_bot`.
 
+
+## Advanced
+
+### Running the bot on a headless server
+
+You can use [Xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a virtual framebuffer on a headless server and run this program:
+
+```shell
+xvfb-run -a --server-args="-screen 0 1280x800x24 -nolisten tcp -dpi 96 +extension RANDR" pnpm start
+```
+
+We recommend you to use Google auth to avoid the complicated login Recaptchas. If you use a OpenAI account, you may have to use nopecha or 2captcha or manually solve the Recaptcha (by connecting to the display server using x11vnc). For more details about CAPTCHA solving, please refer to [the api repository](https://github.com/transitive-bullshit/chatgpt-api/#captchas).
+
+#### Docker
+
+You can also try this docker image by running the following command from the project root folder:
+
+```shell
+docker compose up
+```
+
 ## LICENSE
 
 [MIT License](LICENSE).
