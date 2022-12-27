@@ -143,6 +143,7 @@ async function main() {
       case '/reset':
         await bot.sendChatAction(msg.chat.id, 'typing');
         await api.resetThread();
+        chatContext = {};
         await bot.sendMessage(
           msg.chat.id,
           '🔄 The chat thread has been reset. New chat thread started.'
