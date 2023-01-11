@@ -31,23 +31,23 @@
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.11.17",
+    "@types/node": "^18.11.18",
     "@types/node-telegram-bot-api": "^0.57.6",
-    "@typescript-eslint/eslint-plugin": "^5.47.0",
-    "@typescript-eslint/parser": "^5.47.0",
-    "eslint": "^8.30.0",
-    "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "tsc-watch": "^6.0.0",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "chatgpt": "^3.3.3",
+    "chatgpt": "^3.3.12",
     "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
-    "puppeteer": "^19.4.1"
+    "puppeteer": "^19.5.0"
   }
 }
