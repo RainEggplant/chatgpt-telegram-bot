@@ -6,7 +6,7 @@ specifiers:
   '@types/node-telegram-bot-api': ^0.57.6
   '@typescript-eslint/eslint-plugin': ^5.48.1
   '@typescript-eslint/parser': ^5.48.1
-  chatgpt: ^3.3.12
+  chatgpt: ^3.4.1
   dotenv: ^16.0.3
   eslint: ^8.31.0
   eslint-config-prettier: ^8.6.0
@@ -15,16 +15,16 @@ specifiers:
   lodash: ^4.17.21
   node-telegram-bot-api: ^0.60.0
   prettier: ^2.8.2
-  puppeteer: ^19.5.0
+  puppeteer: ^19.5.2
   tsc-watch: ^6.0.0
   typescript: ^4.9.4
 
 dependencies:
-  chatgpt: registry.npmmirror.com/chatgpt/3.3.12_puppeteer@19.5.0
+  chatgpt: registry.npmmirror.com/chatgpt/3.4.1_puppeteer@19.5.2
   dotenv: registry.npmmirror.com/dotenv/16.0.3
   lodash: registry.npmmirror.com/lodash/4.17.21
   node-telegram-bot-api: registry.npmmirror.com/node-telegram-bot-api/0.60.0
-  puppeteer: registry.npmmirror.com/puppeteer/19.5.0
+  puppeteer: registry.npmmirror.com/puppeteer/19.5.2
 
 devDependencies:
   '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
@@ -105,7 +105,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       merge-deep: registry.npmmirror.com/merge-deep/3.0.3
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -711,11 +711,11 @@ packages:
     version: 2.0.2
     dev: false
 
-  registry.npmmirror.com/chatgpt/3.3.12_puppeteer@19.5.0:
-    resolution: {integrity: sha512-/o+uMsBmmHaICDCv4nKrZFyOklCRjilZTmOzoheZqz+afNvZxhQajBoK2OKw/XJ6Qu+gJUPclEHqbxA1ZHMnzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-3.3.12.tgz}
-    id: registry.npmmirror.com/chatgpt/3.3.12
+  registry.npmmirror.com/chatgpt/3.4.1_puppeteer@19.5.2:
+    resolution: {integrity: sha512-aCFJRvJI9+HhuDquNi6ZgTrM524imnmZVY9lyyDo0F9LYJgCrk/h3XVqbzKDREsDW0IG4jHWIm8Q7R90FCAJmA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-3.4.1.tgz}
+    id: registry.npmmirror.com/chatgpt/3.4.1
     name: chatgpt
-    version: 3.3.12
+    version: 3.4.1
     engines: {node: '>=18'}
     peerDependencies:
       puppeteer: '*'
@@ -725,8 +725,8 @@ packages:
       expiry-map: registry.npmmirror.com/expiry-map/2.0.0
       html-to-md: registry.npmmirror.com/html-to-md/0.8.3
       p-timeout: registry.npmmirror.com/p-timeout/6.0.0
-      puppeteer: registry.npmmirror.com/puppeteer/19.5.0
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer: registry.npmmirror.com/puppeteer/19.5.2
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
       puppeteer-extra-plugin-recaptcha: registry.npmmirror.com/@fisch0920/puppeteer-extra-plugin-recaptcha/3.6.6_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-stealth: registry.npmmirror.com/puppeteer-extra-plugin-stealth/2.11.1_puppeteer-extra@3.3.4
       random: registry.npmmirror.com/random/4.1.0
@@ -3117,10 +3117,10 @@ packages:
     version: 2.2.0
     engines: {node: '>=6'}
 
-  registry.npmmirror.com/puppeteer-core/19.5.0:
-    resolution: {integrity: sha512-s2EE2x/7UfvR4AP+6OokY7yEmIboZoQFc2InuWUu5grWG7uka3W2Nch6+R4ERQepH4NO8kkkEBzNO4PqtwU4lQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-core/-/puppeteer-core-19.5.0.tgz}
+  registry.npmmirror.com/puppeteer-core/19.5.2:
+    resolution: {integrity: sha512-Rqk+3kqM+Z2deooTYqcYt8lRtGffJdifWa9td9nbJSjhANWsFouk8kLBNUKycewCCFHM8TZUKS0x28OllavW2A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-core/-/puppeteer-core-19.5.2.tgz}
     name: puppeteer-core
-    version: 19.5.0
+    version: 19.5.2
     engines: {node: '>=14.1.0'}
     dependencies:
       cross-fetch: registry.npmmirror.com/cross-fetch/3.1.5
@@ -3156,7 +3156,7 @@ packages:
         optional: true
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-user-preferences: registry.npmmirror.com/puppeteer-extra-plugin-user-preferences/2.4.0_puppeteer-extra@3.3.4
     transitivePeerDependencies:
@@ -3180,7 +3180,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       fs-extra: registry.npmmirror.com/fs-extra/10.1.0
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       rimraf: registry.npmmirror.com/rimraf/3.0.2
     transitivePeerDependencies:
@@ -3204,7 +3204,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       deepmerge: registry.npmmirror.com/deepmerge/4.2.2
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-user-data-dir: registry.npmmirror.com/puppeteer-extra-plugin-user-data-dir/2.4.0_puppeteer-extra@3.3.4
     transitivePeerDependencies:
@@ -3229,12 +3229,12 @@ packages:
       '@types/debug': registry.npmmirror.com/@types/debug/4.1.7
       debug: registry.npmmirror.com/debug/4.3.4
       merge-deep: registry.npmmirror.com/merge-deep/3.0.3
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.0:
+  registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.5.2:
     resolution: {integrity: sha512-fN5pHvSMJ8d1o7Z8wLLTQOUBpORD2BcFn+KDs7QnkGZs9SV69hcUcce67vX4L4bNSEG3A0P6Osrv+vWNhhdm8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-extra/-/puppeteer-extra-3.3.4.tgz}
     id: registry.npmmirror.com/puppeteer-extra/3.3.4
     name: puppeteer-extra
@@ -3255,15 +3255,15 @@ packages:
       '@types/debug': registry.npmmirror.com/@types/debug/4.1.7
       debug: registry.npmmirror.com/debug/4.3.4
       deepmerge: registry.npmmirror.com/deepmerge/4.2.2
-      puppeteer: registry.npmmirror.com/puppeteer/19.5.0
+      puppeteer: registry.npmmirror.com/puppeteer/19.5.2
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/puppeteer/19.5.0:
-    resolution: {integrity: sha512-601tKJdKu/mlL6l5wklNJiQbIxyEU2N4pwZzFkwhr1VizNYV0Fly1aFMT7qAp7CvzklYLypQGKn7/Zgpy+HheA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer/-/puppeteer-19.5.0.tgz}
+  registry.npmmirror.com/puppeteer/19.5.2:
+    resolution: {integrity: sha512-xlqRyrhXhVH114l79Y0XqYXUVG+Yfw4sKlvN55t8Y9DxtA5fzI1uqF8SVXbWK5DUMbD6Jo4lpixTZCTTZGD05g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer/-/puppeteer-19.5.2.tgz}
     name: puppeteer
-    version: 19.5.0
+    version: 19.5.2
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
@@ -3271,7 +3271,7 @@ packages:
       https-proxy-agent: registry.npmmirror.com/https-proxy-agent/5.0.1
       progress: registry.npmmirror.com/progress/2.0.3
       proxy-from-env: registry.npmmirror.com/proxy-from-env/1.1.0
-      puppeteer-core: registry.npmmirror.com/puppeteer-core/19.5.0
+      puppeteer-core: registry.npmmirror.com/puppeteer-core/19.5.2
     transitivePeerDependencies:
       - bufferutil
       - encoding

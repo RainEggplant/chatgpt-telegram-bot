@@ -44,10 +44,10 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "chatgpt": "^3.3.12",
+    "chatgpt": "^3.4.1",
     "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
-    "puppeteer": "^19.5.0"
+    "puppeteer": "^19.5.2"
   }
 }
