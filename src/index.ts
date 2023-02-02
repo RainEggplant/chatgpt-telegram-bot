@@ -18,6 +18,7 @@ async function main() {
     password: process.env.OPENAI_PASSWORD || '',
     isGoogleLogin:
       process.env.IS_GOOGLE_LOGIN?.toLowerCase() == 'true' || false,
+    isProAccount: process.env.IS_PRO_ACCOUNT?.toLowerCase() == 'true' || false,
     executablePath: process.env.EXECUTABLE_PATH || undefined,
     proxyServer: process.env.PROXY || undefined,
     nopechaKey: process.env.NOPECHA_KEY || undefined,
