@@ -1,6 +1,6 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-1.0.3-brightgreen)
+![badge:version](https://img.shields.io/badge/version-1.0.4-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Works with Cloudflare protection.
