@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-telegram-bot",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -44,7 +44,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "chatgpt": "^3.5.2",
+    "chatgpt": "3.5.1",
     "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",

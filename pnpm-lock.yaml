@@ -6,7 +6,7 @@ specifiers:
   '@types/node-telegram-bot-api': ^0.57.6
   '@typescript-eslint/eslint-plugin': ^5.50.0
   '@typescript-eslint/parser': ^5.50.0
-  chatgpt: ^3.5.2
+  chatgpt: 3.5.1
   dotenv: ^16.0.3
   eslint: ^8.33.0
   eslint-config-prettier: ^8.6.0
@@ -20,7 +20,7 @@ specifiers:
   typescript: ^4.9.5
 
 dependencies:
-  chatgpt: registry.npmmirror.com/chatgpt/3.5.2_puppeteer@19.6.3
+  chatgpt: registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.6.3
   dotenv: registry.npmmirror.com/dotenv/16.0.3
   lodash: registry.npmmirror.com/lodash/4.17.21
   node-telegram-bot-api: registry.npmmirror.com/node-telegram-bot-api/0.60.0
@@ -712,11 +712,11 @@ packages:
     version: 2.0.2
     dev: false
 
-  registry.npmmirror.com/chatgpt/3.5.2_puppeteer@19.6.3:
-    resolution: {integrity: sha512-RDedJMO8KWmuhAMWSRJyHQJCw7luEldv37fBMFgFSGfEXHniwuD3TT/bAbn+I6cSzDFPIMxh9THVKdN3wMG3jA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-3.5.2.tgz}
-    id: registry.npmmirror.com/chatgpt/3.5.2
+  registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.6.3:
+    resolution: {integrity: sha512-8gZRTTrk4f7yPO1iv656m66J8dFddPChLHJQW+Cr3Oi8iJT3vNzi9VxXWukawA2Bj+f505CUInBWNxdIcb6Zag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-3.5.1.tgz}
+    id: registry.npmmirror.com/chatgpt/3.5.1
     name: chatgpt
-    version: 3.5.2
+    version: 3.5.1
     engines: {node: '>=18'}
     peerDependencies:
       puppeteer: '*'
