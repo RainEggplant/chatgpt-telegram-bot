@@ -9,6 +9,8 @@ A ChatGPT bot for Telegram based on Node.js. Works with Cloudflare protection.
 > - The v4 API relies on a leaked model that is not officially supported and is subject to change at any time, making it less reliable than v3.
 > - The v4 API may incur charges while v3 is free.
 > - The v3 API will [continue to be maintained](https://github.com/transitive-bullshit/chatgpt-api/pull/294).
+>
+> We will allow users to choose to use the v4 API when it becomes stable.
 
 
 ## Features
