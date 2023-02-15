@@ -1,16 +1,13 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-1.0.5-brightgreen)
+![badge:version](https://img.shields.io/badge/version-2.0.0-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
-A ChatGPT bot for Telegram based on Node.js. Works with Cloudflare protection.
+A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
 
-> 🔔 **NOTICE (Feb. 9, 2023)**: Currently, we are sticking with ChatGPT API [version 3](https://github.com/transitive-bullshit/chatgpt-api/tree/v3) instead of [version 4](https://github.com/transitive-bullshit/chatgpt-api) for several reasons:
-> - The v4 API relies on a leaked model that is not officially supported and is subject to change at any time, making it less reliable than v3.
-> - The v4 API may incur charges while v3 is free.
-> - The v3 API will [continue to be maintained](https://github.com/transitive-bullshit/chatgpt-api/pull/294).
+> 🔔 **NOTICE (Feb. 15, 2023)**: We have release the v2.0.0 of this bot, which supports both [browserless](https://github.com/transitive-bullshit/chatgpt-api) and [browser-based](https://github.com/transitive-bullshit/chatgpt-api/tree/v3) APIs. You can switch between the two APIs at any time using the config file. Additionally, we have refactored the codebase to make it more maintainable and easier to extend.
 >
-> We will allow users to choose to use the v4 API when it becomes stable.
+> For old users, you will need to switch from the `.env` file to json files under the `config/` folder.
 
 
 ## Features
@@ -26,29 +23,27 @@ A ChatGPT bot for Telegram based on Node.js. Works with Cloudflare protection.
   </tr>
 </table>
 
+- Support for both browserless and browser-based APIs
 - Support for both private and group chats
 - Work in privacy mode (the bot can only see specific messages)
 - Bot access control based on user and group IDs
 - Reset chat thread and refresh session with command
 - Typing indicator, Markdown formatting, ...
-- Cloudflare bypassing and CAPTCHA automation
+- Cloudflare bypassing and CAPTCHA automation (for the browser-based API)
 - User-friendly logging
 
 ## Usage
 
 ### Start the server
 
-> **Note** This bot uses a [browser-based ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api/tree/v3), please make sure you have Node.js >= 18 and a Chromium-based browser installed.
-
 To get started, follow these steps:
 
-1. Make a copy of the file `.env.example` and rename it as `.env`.
-2. In the `.env` file, enter your OpenAI account information and Telegram bot token. Set `IS_GOOGLE_LOGIN` to `true` if you're using Google auth.
-3. Specify the ID of the users and groups who are permitted to use this bot. Separate multiple IDs with commas (`,`). Note that all members of the specified groups will have access to the bot inside the group. **If you leave these options empty, every person and group will be able to use the bot.**
-4. If the browser is not installed in the default location, specify its executable path. You can also specify proxy settings, if needed.
-5. Specify the `NOPECHA_KEY` or `CAPTCHA_TOKEN` if you're using the corresponding CAPTCHA solver.
-6. You can also specify the command to invoke the bot in group chats. The default command is `/chat`.
-7. Set `IS_PRO_ACCOUNT` to `true` if you're using a premium / pro / paid account.
+1. Create `local.json` under the `config/` folder. You can copy the `config/default.json` as a template.
+2. Modify the `local.json` following the instructions in the file. The settings in `local.json` will override the default settings in `default.json`.
+  - Set `api.version` to `v3` if you want to use the browser-based API. Then provide the OpenAI / Google / Microsoft credentials and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/tree/v3#authentication) and [this](https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters) for more details. Make sure you have a Chromium-based browser installed.
+  - Set `api.version` to `v4` if you want to use the browserless API. Then provide your [OpenAI API Key](https://platform.openai.com/overview) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters) for more details.
+
+> **Warning** Using the browserless API may incur charges depending on the model you use (defined in `api.v4.completionParams` and the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository and the [Discord channel](https://discord.gg/v9gERj825w).
 
 Then you can start the bot with:
 
@@ -62,7 +57,7 @@ pnpm build && pnpm start
 To chat with the bot in Telegram, you can:
 
 - Send direct messages to the bot (this is not supported in groups)
-- Send messages that start with the specified command (e.g., `/chat` or the command you specified in the `.env` file)
+- Send messages that start with the specified command (e.g., `/chat` or the command you specified in the json config file)
 - Reply to the bot's last message
 
 > **Note** Make sure you have enabled the privacy mode of your bot before adding it to a group, or it will reply to every message in the group.
@@ -78,7 +73,7 @@ The bot also has several commands.
 
 ## Advanced
 
-### Running the bot on a headless server
+### Running the bot on a headless server (browser-based API)
 
 You can use [Xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a virtual framebuffer on a headless server and run this program:
 

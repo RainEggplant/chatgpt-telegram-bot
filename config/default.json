@@ -1,0 +1,31 @@
+{
+  "debug": 1, // debug level: 0 - no debug, 1 - debug, 2 - verbose debug
+  "bot": {
+    "token": "TELEGRAM_BOT_TOKEN",
+    "groupIds": [], // allowed group ids, leave empty to allow all
+    "userIds": [], // allowed user ids, leave empty to allow all
+    "chatCmd": "/chat"
+  },
+  "api": {
+    "version": "v3", // "v3" (browser-based) or "v4" (browserless), the version of the chatgpt api to use
+    "v3": {
+      // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters"
+      "email": "ACCOUNT_EMAIL",
+      "password": "ACCOUNT_PASSWORD",
+      "isGoogleLogin": false,
+      "isProAccount": false,
+      "executablePath": "",
+      "proxy": "",
+      "nopechaKey": "",
+      "captchaToken": "",
+      "userDataDir": ""
+    },
+    "v4": {
+      // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters"
+      "apiKey": "API_KEY",
+      "apiBaseUrl": "",
+      "apiReverseProxyUrl": "",
+      "completionParams": {}
+    }
+  }
+}

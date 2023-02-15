@@ -6,6 +6,7 @@
   "configurations": [
     {
       "type": "node",
+      "runtimeArgs": ["--experimental-specifier-resolution=node"],
       "request": "launch",
       "name": "Debug",
       "skipFiles": ["<node_internals>/**"],

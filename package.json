@@ -7,8 +7,8 @@
   "scripts": {
     "build": "tsc --build",
     "build:debug": "tsc --build && tsc --sourceMap",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
-    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node --experimental-specifier-resolution=node dist/index.js\"",
+    "start": "node --experimental-specifier-resolution=node dist/index.js",
     "lint": "eslint src/**/*.{js,ts}",
     "lint:fix": "eslint --fix src/**/*.{js,ts}",
     "format": "prettier --check src/**/*.{js,ts}",
@@ -30,24 +30,27 @@
   "author": "RainEggplant",
   "license": "MIT",
   "devDependencies": {
+    "@types/config": "^3.3.0",
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.11.18",
-    "@types/node-telegram-bot-api": "^0.57.6",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
-    "eslint": "^8.33.0",
+    "@types/node": "^18.13.0",
+    "@types/node-telegram-bot-api": "^0.57.7",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
     "tsc-watch": "^6.0.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "chatgpt": "3.5.1",
+    "chatgpt": "4.3.2",
+    "chatgpt-v3": "npm:chatgpt@3.5.1",
+    "config": "^3.3.9",
     "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
-    "puppeteer": "^19.6.3"
+    "puppeteer": "^19.7.0"
   }
 }

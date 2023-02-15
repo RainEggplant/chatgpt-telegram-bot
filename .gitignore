@@ -132,3 +132,6 @@ dist
 
 # Misc
 .DS_Store
+
+# Config files
+config/local.json
