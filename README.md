@@ -5,6 +5,8 @@
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
 
+## 🎉 v2 released!
+
 > 🔔 **NOTICE (Feb. 15, 2023)**: We have release the v2.0.0 of this bot, which supports both [browserless](https://github.com/transitive-bullshit/chatgpt-api) and [browser-based](https://github.com/transitive-bullshit/chatgpt-api/tree/v3) APIs. You can switch between the two APIs at any time using the config file. Additionally, we have refactored the codebase to make it more maintainable and easier to extend.
 >
 > For old users, you will need to switch from the `.env` file to json files under the `config/` folder.
@@ -42,8 +44,11 @@ To get started, follow these steps:
 2. Modify the `local.json` following the instructions in the file. The settings in `local.json` will override the default settings in `default.json`.
   - Set `api.version` to `v3` if you want to use the browser-based API. Then provide the OpenAI / Google / Microsoft credentials and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/tree/v3#authentication) and [this](https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters) for more details. Make sure you have a Chromium-based browser installed.
   - Set `api.version` to `v4` if you want to use the browserless API. Then provide your [OpenAI API Key](https://platform.openai.com/overview) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters) for more details.
-
-> **Warning** Using the browserless API may incur charges depending on the model you use (defined in `api.v4.completionParams` and the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository and the [Discord channel](https://discord.gg/v9gERj825w).
+    > **Warning**
+    >
+    > Using the browserless API may result in charges based on the model you use, as defined in the `api.v4.completionParams` (the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository.
+    >
+    > Alternatively, if you prefer to avoid charges, you can utilize the community reverse proxy servers that mimic OpenAI's completions API. Please refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/demos/demo-reverse-proxy.ts) for more details.
 
 Then you can start the bot with:
 
