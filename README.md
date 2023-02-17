@@ -98,12 +98,14 @@ You can also try this docker image by running the following command from the pro
 docker compose up
 ```
 
-## LICENSE
-
-[MIT License](LICENSE).
-
 ## Credits
 
 - [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api): Node.js client for the unofficial ChatGPT API.
 - [Node.js Telegram Bot API](https://github.com/yagop/node-telegram-bot-api): Telegram Bot API for NodeJS.
 - [🤖️ chatbot-telegram](https://github.com/Ciyou/chatbot-telegram): Yet another telegram ChatGPT bot.
+
+## LICENSE
+
+[MIT License](LICENSE).
+
+**Leave a star ⭐ if you find this project useful.**
