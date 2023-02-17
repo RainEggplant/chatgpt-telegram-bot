@@ -134,4 +134,4 @@ dist
 .DS_Store
 
 # Config files
-config/local.json
+config/local*.json

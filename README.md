@@ -48,7 +48,7 @@ To get started, follow these steps:
     >
     > Using the browserless API may result in charges based on the model you use, as defined in the `api.v4.completionParams` (the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository.
     >
-    > Alternatively, if you prefer to avoid charges, you can utilize the community reverse proxy servers that mimic OpenAI's completions API. Please refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/demos/demo-reverse-proxy.ts) for more details.
+    > Alternatively, if you prefer to avoid charges, you can utilize the community reverse proxy servers that mimic OpenAI's completions API. Please refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/demos/demo-reverse-proxy.ts) and [this](https://github.com/waylaidwanderer/node-chatgpt-api#using-a-reverse-proxy) for more details.
 
 Then you can start the bot with:
 
