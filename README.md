@@ -7,6 +7,8 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 
 ## 🎉 v2 released!
 
+> 🔔 **NOTICE (Feb. 17, 2023)**: According to [one of the maintainers](https://github.com/waylaidwanderer/node-chatgpt-api#updates) of the reverse proxy servers, OpenAI has patched this method. So you have to either use the browserless Official API with official models (which costs money), or use the browser-based solution.
+
 > 🔔 **NOTICE (Feb. 15, 2023)**: We have release the v2.0.0 of this bot, which supports both [browserless](https://github.com/transitive-bullshit/chatgpt-api) and [browser-based](https://github.com/transitive-bullshit/chatgpt-api/tree/v3) APIs. You can switch between the two APIs at any time using the config file. Additionally, we have refactored the codebase to make it more maintainable and easier to extend.
 >
 > For old users, you will need to switch from the `.env` file to json files under the `config/` folder.
@@ -25,7 +27,7 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
   </tr>
 </table>
 
-- Support for both browserless and browser-based APIs
+- Support for both browserless (v4) and browser-based (v3) APIs
 - Support for both private and group chats
 - Work in privacy mode (the bot can only see specific messages)
 - Bot access control based on user and group IDs
