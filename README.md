@@ -49,7 +49,7 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
   </tr>
 </table>
 
-- Support for both browserless (v4) and browser-based (v3) APIs
+- Support for both browserless (official, unofficial) and browser-based APIs
 - Support for both private and group chats
 - Work in privacy mode (the bot can only see specific messages)
 - Bot access control based on user and group IDs
@@ -138,6 +138,7 @@ docker compose up
 ## Credits
 
 - [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api): Node.js client for the unofficial ChatGPT API.
+- [ChatGPT](https://github.com/acheong08/ChatGPT): Reverse engineered ChatGPT API 
 - [Node.js Telegram Bot API](https://github.com/yagop/node-telegram-bot-api): Telegram Bot API for NodeJS.
 - [🤖️ chatbot-telegram](https://github.com/Ciyou/chatbot-telegram): Yet another telegram ChatGPT bot.
 
