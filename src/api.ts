@@ -22,7 +22,7 @@ interface ChatContext {
 
 class ChatGPT {
   debug: number;
-  readonly apiVersion: string;
+  readonly apiType: string;
   protected _opts: APIOptions;
   protected _api:
     | ChatGPTAPI
@@ -36,32 +36,32 @@ class ChatGPT {
 
   constructor(apiOpts: APIOptions, debug = 1) {
     this.debug = debug;
-    this.apiVersion = apiOpts.version;
+    this.apiType = apiOpts.type;
     this._opts = apiOpts;
   }
 
   init = async () => {
-    if (this._opts.version == 'browser') {
+    if (this._opts.type == 'browser') {
       const {ChatGPTAPIBrowser} = await import('chatgpt-v3');
       this._apiBrowser = new ChatGPTAPIBrowser(
         this._opts.browser as APIBrowserOptions
       );
       await this._apiBrowser.initSession();
       this._api = this._apiBrowser;
-    } else if (this._opts.version == 'official') {
+    } else if (this._opts.type == 'official') {
       const {ChatGPTAPI} = await import('chatgpt');
       this._apiOfficial = new ChatGPTAPI(
         this._opts.official as APIOfficialOptions
       );
       this._api = this._apiOfficial;
-    } else if (this._opts.version == 'unofficial') {
+    } else if (this._opts.type == 'unofficial') {
       const {ChatGPTUnofficialProxyAPI} = await import('chatgpt');
       this._apiUnofficialProxy = new ChatGPTUnofficialProxyAPI(
         this._opts.unofficial as APIUnofficialOptions
       );
       this._api = this._apiUnofficialProxy;
     } else {
-      throw new RangeError('Invalid API version');
+      throw new RangeError('Invalid API type');
     }
     logWithTime('🔮 ChatGPT API has started...');
   };
@@ -78,7 +78,7 @@ class ChatGPT {
     });
 
     const parentMessageId =
-      this.apiVersion == 'browser'
+      this.apiType == 'browser'
         ? (res as ChatResponseV3).messageId
         : (res as ChatResponseV4).id;
 

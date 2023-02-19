@@ -11,13 +11,11 @@ function loadConfig(): Config {
     }
   }
 
-  const apiVersion = config.get<'browser' | 'official' | 'unofficial'>(
-    'api.version'
-  );
+  const apiType = config.get<'browser' | 'official' | 'unofficial'>('api.type');
   let apiBrowserCfg;
   let apiOfficialCfg;
   let apiUnofficialCfg;
-  if (apiVersion == 'browser') {
+  if (apiType == 'browser') {
     apiBrowserCfg = {
       email: config.get<string>('api.browser.email'),
       password: config.get<string>('api.browser.password'),
@@ -30,7 +28,7 @@ function loadConfig(): Config {
       userDataDir: tryGet<string>('api.browser.userDataDir') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
-  } else if (apiVersion == 'official') {
+  } else if (apiType == 'official') {
     apiOfficialCfg = {
       apiKey: config.get<string>('api.official.apiKey'),
       apiBaseUrl: tryGet<string>('api.official.apiBaseUrl') || undefined,
@@ -42,7 +40,7 @@ function loadConfig(): Config {
         ) || undefined,
       debug: config.get<number>('debug') >= 2,
     };
-  } else if (apiVersion == 'unofficial') {
+  } else if (apiType == 'unofficial') {
     apiUnofficialCfg = {
       accessToken: config.get<string>('api.unofficial.accessToken'),
       apiReverseProxyUrl:
@@ -51,7 +49,7 @@ function loadConfig(): Config {
       debug: config.get<number>('debug') >= 2,
     };
   } else {
-    throw new RangeError('Invalid API version');
+    throw new RangeError('Invalid API type');
   }
 
   const cfg = {
@@ -63,7 +61,7 @@ function loadConfig(): Config {
       chatCmd: tryGet<string>('bot.chatCmd') || '/chat',
     },
     api: {
-      version: apiVersion,
+      type: apiType,
       browser: apiBrowserCfg,
       official: apiOfficialCfg,
       unofficial: apiUnofficialCfg,

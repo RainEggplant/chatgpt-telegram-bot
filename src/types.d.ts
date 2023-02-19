@@ -35,7 +35,7 @@ export interface APIUnofficialOptions {
 }
 
 export interface APIOptions {
-  version: 'browser' | 'official' | 'unofficial';
+  type: 'browser' | 'official' | 'unofficial';
   browser?: APIBrowserOptions;
   official?: APIOfficialOptions;
   unofficial?: APIUnofficialOptions;

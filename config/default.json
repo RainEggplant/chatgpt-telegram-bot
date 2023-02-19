@@ -7,7 +7,7 @@
     "chatCmd": "/chat"
   },
   "api": {
-    "version": "official", // "browser", "official", "unofficial": the version of the chatgpt api to use
+    "type": "official", // "browser", "official", "unofficial": the type of the chatgpt api to use
     "browser": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters"
       "email": "ACCOUNT_EMAIL",
@@ -21,7 +21,7 @@
       "userDataDir": ""
     },
     "official": {
-      // Please refer to "https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptapi"
+      // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters"
       "apiKey": "API_KEY",
       "apiBaseUrl": "",
       "apiReverseProxyUrl": "",
