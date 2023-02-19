@@ -45,7 +45,7 @@ class ChatHandler {
         _.throttle(
           async (partialResponse: ChatResponseV3 | ChatResponseV4) => {
             const resText =
-              this._api.apiVersion == 'v3'
+              this._api.apiVersion == 'browser'
                 ? (partialResponse as ChatResponseV3).response
                 : (partialResponse as ChatResponseV4).text;
             reply = await this._editMessage(reply, resText);
@@ -56,7 +56,7 @@ class ChatHandler {
         )
       );
       const resText =
-        this._api.apiVersion == 'v3'
+        this._api.apiVersion == 'browser'
           ? (res as ChatResponseV3).response
           : (res as ChatResponseV4).text;
       await this._editMessage(reply, resText);

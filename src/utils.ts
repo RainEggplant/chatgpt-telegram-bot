@@ -11,31 +11,43 @@ function loadConfig(): Config {
     }
   }
 
-  const apiVersion = config.get<string>('api.version');
-  let apiV3Cfg;
-  let apiV4Cfg;
-  if (apiVersion == 'v3') {
-    apiV3Cfg = {
-      email: config.get<string>('api.v3.email'),
-      password: config.get<string>('api.v3.password'),
-      isGoogleLogin: tryGet<boolean>('api.v3.isGoogleLogin') || false,
-      isProAccount: tryGet<boolean>('api.v3.isProAccount') || false,
-      executablePath: tryGet<string>('api.v3.executablePath') || undefined,
-      proxyServer: tryGet<string>('api.v3.proxy') || undefined,
-      nopechaKey: tryGet<string>('api.v3.nopechaKey') || undefined,
-      captchaToken: tryGet<string>('api.v3.captchaToken') || undefined,
-      userDataDir: tryGet<string>('api.v3.userDataDir') || undefined,
+  const apiVersion = config.get<'browser' | 'official' | 'unofficial'>(
+    'api.version'
+  );
+  let apiBrowserCfg;
+  let apiOfficialCfg;
+  let apiUnofficialCfg;
+  if (apiVersion == 'browser') {
+    apiBrowserCfg = {
+      email: config.get<string>('api.browser.email'),
+      password: config.get<string>('api.browser.password'),
+      isGoogleLogin: tryGet<boolean>('api.browser.isGoogleLogin') || false,
+      isProAccount: tryGet<boolean>('api.browser.isProAccount') || false,
+      executablePath: tryGet<string>('api.browser.executablePath') || undefined,
+      proxyServer: tryGet<string>('api.browser.proxy') || undefined,
+      nopechaKey: tryGet<string>('api.browser.nopechaKey') || undefined,
+      captchaToken: tryGet<string>('api.browser.captchaToken') || undefined,
+      userDataDir: tryGet<string>('api.browser.userDataDir') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
-  } else if (apiVersion == 'v4') {
-    apiV4Cfg = {
-      apiKey: config.get<string>('api.v4.apiKey'),
-      apiBaseUrl: tryGet<string>('api.v4.apiBaseUrl') || undefined,
+  } else if (apiVersion == 'official') {
+    apiOfficialCfg = {
+      apiKey: config.get<string>('api.official.apiKey'),
+      apiBaseUrl: tryGet<string>('api.official.apiBaseUrl') || undefined,
       apiReverseProxyUrl:
-        tryGet<string>('api.v4.apiReverseProxyUrl') || undefined,
+        tryGet<string>('api.official.apiReverseProxyUrl') || undefined,
       completionParams:
-        tryGet<Partial<openai.CompletionParams>>('api.v4.completionParams') ||
-        undefined,
+        tryGet<Partial<openai.CompletionParams>>(
+          'api.official.completionParams'
+        ) || undefined,
+      debug: config.get<number>('debug') >= 2,
+    };
+  } else if (apiVersion == 'unofficial') {
+    apiUnofficialCfg = {
+      accessToken: config.get<string>('api.unofficial.accessToken'),
+      apiReverseProxyUrl:
+        tryGet<string>('api.unofficial.apiReverseProxyUrl') || undefined,
+      model: tryGet<string>('api.unofficial.model') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
   } else {
@@ -52,8 +64,9 @@ function loadConfig(): Config {
     },
     api: {
       version: apiVersion,
-      v3: apiV3Cfg,
-      v4: apiV4Cfg,
+      browser: apiBrowserCfg,
+      official: apiOfficialCfg,
+      unofficial: apiUnofficialCfg,
     },
   };
 

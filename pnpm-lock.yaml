@@ -3,11 +3,11 @@ lockfileVersion: 5.4
 specifiers:
   '@types/config': ^3.3.0
   '@types/lodash': ^4.14.191
-  '@types/node': ^18.13.0
+  '@types/node': ^18.14.0
   '@types/node-telegram-bot-api': ^0.57.7
   '@typescript-eslint/eslint-plugin': ^5.52.0
   '@typescript-eslint/parser': ^5.52.0
-  chatgpt: 4.3.2
+  chatgpt: ^4.5.1
   chatgpt-v3: npm:chatgpt@3.5.1
   config: ^3.3.9
   dotenv: ^16.0.3
@@ -18,23 +18,23 @@ specifiers:
   lodash: ^4.17.21
   node-telegram-bot-api: ^0.60.0
   prettier: ^2.8.4
-  puppeteer: ^19.7.0
+  puppeteer: ^19.7.1
   tsc-watch: ^6.0.0
   typescript: ^4.9.5
 
 dependencies:
-  chatgpt: registry.npmmirror.com/chatgpt/4.3.2
-  chatgpt-v3: registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.0
+  chatgpt: registry.npmmirror.com/chatgpt/4.5.1
+  chatgpt-v3: registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.1
   config: registry.npmmirror.com/config/3.3.9
   dotenv: registry.npmmirror.com/dotenv/16.0.3
   lodash: registry.npmmirror.com/lodash/4.17.21
   node-telegram-bot-api: registry.npmmirror.com/node-telegram-bot-api/0.60.0
-  puppeteer: registry.npmmirror.com/puppeteer/19.7.0_typescript@4.9.5
+  puppeteer: registry.npmmirror.com/puppeteer/19.7.1_typescript@4.9.5
 
 devDependencies:
   '@types/config': registry.npmmirror.com/@types/config/3.3.0
   '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
-  '@types/node': registry.npmmirror.com/@types/node/18.13.0
+  '@types/node': registry.npmmirror.com/@types/node/18.14.0
   '@types/node-telegram-bot-api': registry.npmmirror.com/@types/node-telegram-bot-api/0.57.7
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.52.0_6cfvjsbua5ptj65675bqcn6oza
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.52.0_7kw3g6rralp5ps6mg3uyzz6azm
@@ -111,7 +111,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       merge-deep: registry.npmmirror.com/merge-deep/3.0.3
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -221,14 +221,14 @@ packages:
     name: '@types/node-telegram-bot-api'
     version: 0.57.7
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node/18.13.0
+      '@types/node': registry.npmmirror.com/@types/node/18.14.0
       '@types/request': registry.npmmirror.com/@types/request/2.48.8
     dev: true
 
-  registry.npmmirror.com/@types/node/18.13.0:
-    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.13.0.tgz}
+  registry.npmmirror.com/@types/node/18.14.0:
+    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.14.0.tgz}
     name: '@types/node'
-    version: 18.13.0
+    version: 18.14.0
 
   registry.npmmirror.com/@types/request/2.48.8:
     resolution: {integrity: sha512-whjk1EDJPcAR2kYHRbFl/lKeeKYTi05A15K9bnLInCVroNDCtXce57xKdI0/rQaA3K+6q0eFyUBPmqfSndUZdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/request/-/request-2.48.8.tgz}
@@ -236,7 +236,7 @@ packages:
     version: 2.48.8
     dependencies:
       '@types/caseless': registry.npmmirror.com/@types/caseless/0.12.2
-      '@types/node': registry.npmmirror.com/@types/node/18.13.0
+      '@types/node': registry.npmmirror.com/@types/node/18.14.0
       '@types/tough-cookie': registry.npmmirror.com/@types/tough-cookie/4.0.2
       form-data: registry.npmmirror.com/form-data/2.5.1
     dev: true
@@ -265,7 +265,7 @@ packages:
     version: 2.10.0
     requiresBuild: true
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node/18.13.0
+      '@types/node': registry.npmmirror.com/@types/node/18.14.0
     dev: false
     optional: true
 
@@ -724,7 +724,7 @@ packages:
     version: 2.0.2
     dev: false
 
-  registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.0:
+  registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.1:
     resolution: {integrity: sha512-8gZRTTrk4f7yPO1iv656m66J8dFddPChLHJQW+Cr3Oi8iJT3vNzi9VxXWukawA2Bj+f505CUInBWNxdIcb6Zag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-3.5.1.tgz}
     id: registry.npmmirror.com/chatgpt/3.5.1
     name: chatgpt
@@ -738,8 +738,8 @@ packages:
       expiry-map: registry.npmmirror.com/expiry-map/2.0.0
       html-to-md: registry.npmmirror.com/html-to-md/0.8.3
       p-timeout: registry.npmmirror.com/p-timeout/6.1.1
-      puppeteer: registry.npmmirror.com/puppeteer/19.7.0_typescript@4.9.5
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer: registry.npmmirror.com/puppeteer/19.7.1_typescript@4.9.5
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
       puppeteer-extra-plugin-recaptcha: registry.npmmirror.com/@fisch0920/puppeteer-extra-plugin-recaptcha/3.6.6_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-stealth: registry.npmmirror.com/puppeteer-extra-plugin-stealth/2.11.1_puppeteer-extra@3.3.4
       random: registry.npmmirror.com/random/4.1.0
@@ -754,11 +754,11 @@ packages:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/chatgpt/4.3.2:
-    resolution: {integrity: sha512-5+Kh0mdP/pDJTL3kA6C6Dp43EO8T8sILPJbbQwOu3J4dK+n/tYpSXsmG6VZkmitAVOffeTonXTGDJwslc66orw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-4.3.2.tgz}
+  registry.npmmirror.com/chatgpt/4.5.1:
+    resolution: {integrity: sha512-AiqSDtuAboLxL7QkegAeds/yK/WHDfpqd70xrNR/W78yr8F5M8ro4CydtAAQhI6VQ5Kb2EIGoqXNrXtuZBbLDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-4.5.1.tgz}
     name: chatgpt
-    version: 4.3.2
-    engines: {node: '>=18'}
+    version: 4.5.1
+    engines: {node: '>=14'}
     dependencies:
       eventsource-parser: registry.npmmirror.com/eventsource-parser/0.0.5
       gpt-3-encoder: registry.npmmirror.com/gpt-3-encoder/1.1.4
@@ -772,18 +772,6 @@ packages:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chownr/-/chownr-1.1.4.tgz}
     name: chownr
     version: 1.1.4
-    dev: false
-
-  registry.npmmirror.com/chromium-bidi/0.4.3_6o5gdkn34s2j2m26x63ssheuqa:
-    resolution: {integrity: sha512-A40H1rdpJqkTdnGhnYDzMhtDdIbkXNFj2wgIfivMXL7LyHFDmBtv1hdyycDhnxtYunbPLDZtTs/n+ZT5j7Vnew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chromium-bidi/-/chromium-bidi-0.4.3.tgz}
-    id: registry.npmmirror.com/chromium-bidi/0.4.3
-    name: chromium-bidi
-    version: 0.4.3
-    peerDependencies:
-      devtools-protocol: '*'
-      mitt: '*'
-    dependencies:
-      devtools-protocol: registry.npmmirror.com/devtools-protocol/0.0.1094867
     dev: false
 
   registry.npmmirror.com/clean-stack/2.2.0:
@@ -1291,7 +1279,7 @@ packages:
       eslint-utils: registry.npmmirror.com/eslint-utils/3.0.0_eslint@8.34.0
       eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/3.3.0
       espree: registry.npmmirror.com/espree/9.4.1
-      esquery: registry.npmmirror.com/esquery/1.4.0
+      esquery: registry.npmmirror.com/esquery/1.4.2
       esutils: registry.npmmirror.com/esutils/2.0.3
       fast-deep-equal: registry.npmmirror.com/fast-deep-equal/3.1.3
       file-entry-cache: registry.npmmirror.com/file-entry-cache/6.0.1
@@ -1331,10 +1319,10 @@ packages:
       eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/3.3.0
     dev: true
 
-  registry.npmmirror.com/esquery/1.4.0:
-    resolution: {integrity: sha512-cCDispWt5vHHtwMY2YrAQ4ibFkAL8RbH5YGBnZBc90MolvvfkkQcJro/aZiAQUlQ3qgrYS6D6v8Gc5G5CQsc9w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esquery/-/esquery-1.4.0.tgz}
+  registry.npmmirror.com/esquery/1.4.2:
+    resolution: {integrity: sha512-JVSoLdTlTDkmjFmab7H/9SL9qGSyjElT3myyKp7krqjVFQCDLmj1QFaCLRFBszBKI0XVZaiiXvuPIX3ZwHe1Ng==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esquery/-/esquery-1.4.2.tgz}
     name: esquery
-    version: 1.4.0
+    version: 1.4.2
     engines: {node: '>=0.10'}
     dependencies:
       estraverse: registry.npmmirror.com/estraverse/5.3.0
@@ -3204,19 +3192,21 @@ packages:
     version: 2.3.0
     engines: {node: '>=6'}
 
-  registry.npmmirror.com/puppeteer-core/19.7.0_typescript@4.9.5:
-    resolution: {integrity: sha512-BU05W24N+fWudCCeWxv/+R9fnMGmS6HCNPJbieoy0S4yAloVOoVDpOnHV8ZpFTGMPTHQ2EuPyZPWA+idPKO0pw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-core/-/puppeteer-core-19.7.0.tgz}
-    id: registry.npmmirror.com/puppeteer-core/19.7.0
+  registry.npmmirror.com/puppeteer-core/19.7.1_typescript@4.9.5:
+    resolution: {integrity: sha512-4b5Go25IA+0xrUIw0Qtqi4nxc0qwdu/C7VT1+tFPl1W27207YT+7bxfANC3PjXMlS6bcbzinCf5YfGqMl8tfyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-core/-/puppeteer-core-19.7.1.tgz}
+    id: registry.npmmirror.com/puppeteer-core/19.7.1
     name: puppeteer-core
-    version: 19.7.0
+    version: 19.7.1
     engines: {node: '>=14.1.0'}
     peerDependencies:
+      chromium-bidi: 0.4.3
       typescript: '>= 4.7.4'
     peerDependenciesMeta:
+      chromium-bidi:
+        optional: true
       typescript:
         optional: true
     dependencies:
-      chromium-bidi: registry.npmmirror.com/chromium-bidi/0.4.3_6o5gdkn34s2j2m26x63ssheuqa
       cross-fetch: registry.npmmirror.com/cross-fetch/3.1.5
       debug: registry.npmmirror.com/debug/4.3.4
       devtools-protocol: registry.npmmirror.com/devtools-protocol/0.0.1094867
@@ -3231,7 +3221,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - encoding
-      - mitt
       - supports-color
       - utf-8-validate
     dev: false
@@ -3252,7 +3241,7 @@ packages:
         optional: true
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-user-preferences: registry.npmmirror.com/puppeteer-extra-plugin-user-preferences/2.4.0_puppeteer-extra@3.3.4
     transitivePeerDependencies:
@@ -3276,7 +3265,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       fs-extra: registry.npmmirror.com/fs-extra/10.1.0
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       rimraf: registry.npmmirror.com/rimraf/3.0.2
     transitivePeerDependencies:
@@ -3300,7 +3289,7 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug/4.3.4
       deepmerge: registry.npmmirror.com/deepmerge/4.3.0
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
       puppeteer-extra-plugin: registry.npmmirror.com/puppeteer-extra-plugin/3.2.2_puppeteer-extra@3.3.4
       puppeteer-extra-plugin-user-data-dir: registry.npmmirror.com/puppeteer-extra-plugin-user-data-dir/2.4.0_puppeteer-extra@3.3.4
     transitivePeerDependencies:
@@ -3325,12 +3314,12 @@ packages:
       '@types/debug': registry.npmmirror.com/@types/debug/4.1.7
       debug: registry.npmmirror.com/debug/4.3.4
       merge-deep: registry.npmmirror.com/merge-deep/3.0.3
-      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0
+      puppeteer-extra: registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.0:
+  registry.npmmirror.com/puppeteer-extra/3.3.4_puppeteer@19.7.1:
     resolution: {integrity: sha512-fN5pHvSMJ8d1o7Z8wLLTQOUBpORD2BcFn+KDs7QnkGZs9SV69hcUcce67vX4L4bNSEG3A0P6Osrv+vWNhhdm8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer-extra/-/puppeteer-extra-3.3.4.tgz}
     id: registry.npmmirror.com/puppeteer-extra/3.3.4
     name: puppeteer-extra
@@ -3351,16 +3340,16 @@ packages:
       '@types/debug': registry.npmmirror.com/@types/debug/4.1.7
       debug: registry.npmmirror.com/debug/4.3.4
       deepmerge: registry.npmmirror.com/deepmerge/4.3.0
-      puppeteer: registry.npmmirror.com/puppeteer/19.7.0_typescript@4.9.5
+      puppeteer: registry.npmmirror.com/puppeteer/19.7.1_typescript@4.9.5
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/puppeteer/19.7.0_typescript@4.9.5:
-    resolution: {integrity: sha512-ri4XTvTWL09E3L+SNhY9FKRdEOCRhFyyuBppg7D5lk9q4BZKvDWivpjstwmtz5lr8ufxju/jkn9y7uGowISHgw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer/-/puppeteer-19.7.0.tgz}
-    id: registry.npmmirror.com/puppeteer/19.7.0
+  registry.npmmirror.com/puppeteer/19.7.1_typescript@4.9.5:
+    resolution: {integrity: sha512-Hampj7jHlicySL1sSLHCwoFoRCi6RcEbnZmRE5brtbk0mp6Td33+9kWQD2eFs09772JIt00ybPKr50Gt7Y18Xg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/puppeteer/-/puppeteer-19.7.1.tgz}
+    id: registry.npmmirror.com/puppeteer/19.7.1
     name: puppeteer
-    version: 19.7.0
+    version: 19.7.1
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
@@ -3368,11 +3357,11 @@ packages:
       https-proxy-agent: registry.npmmirror.com/https-proxy-agent/5.0.1
       progress: registry.npmmirror.com/progress/2.0.3
       proxy-from-env: registry.npmmirror.com/proxy-from-env/1.1.0
-      puppeteer-core: registry.npmmirror.com/puppeteer-core/19.7.0_typescript@4.9.5
+      puppeteer-core: registry.npmmirror.com/puppeteer-core/19.7.1_typescript@4.9.5
     transitivePeerDependencies:
       - bufferutil
+      - chromium-bidi
       - encoding
-      - mitt
       - supports-color
       - typescript
       - utf-8-validate

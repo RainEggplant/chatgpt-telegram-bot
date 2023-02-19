@@ -7,7 +7,7 @@ export interface BotOptions {
   chatCmd: string;
 }
 
-export interface APIV3Options {
+export interface APIBrowserOptions {
   email: string;
   password: string;
   isGoogleLogin?: boolean;
@@ -19,7 +19,7 @@ export interface APIV3Options {
   debug?: boolean;
 }
 
-export interface APIV4Options {
+export interface APIOfficialOptions {
   apiKey: string;
   apiBaseUrl?: string;
   apiReverseProxyUrl?: string;
@@ -27,10 +27,18 @@ export interface APIV4Options {
   debug?: boolean;
 }
 
+export interface APIUnofficialOptions {
+  accessToken: string;
+  apiReverseProxyUrl?: string;
+  model?: string;
+  debug?: boolean;
+}
+
 export interface APIOptions {
-  version: string;
-  v3?: APIV3Options;
-  v4?: APIV4Options;
+  version: 'browser' | 'official' | 'unofficial';
+  browser?: APIBrowserOptions;
+  official?: APIOfficialOptions;
+  unofficial?: APIUnofficialOptions;
 }
 
 export interface Config {
