@@ -1,6 +1,6 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-2.1.0-brightgreen)
+![badge:version](https://img.shields.io/badge/version-2.1.1-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
@@ -8,6 +8,13 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 ## Updates
 
 <strong>🎉 v2 has been released!</strong>
+
+<details open>
+  <summary><b>🔔 Feb. 22, 2023 (v2.1.1)</b></summary>
+
+  > - Support custom prompt prefix and suffix (allowing you to customize the bot's identity and behavior).
+  > - Support Node.js v19.
+</details>
 
 <details open>
   <summary><b>🔔 Feb. 19, 2023 (v2.1.0)</b></summary>
@@ -56,6 +63,7 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 - Reset chat thread and refresh session with command
 - Typing indicator, Markdown formatting, ...
 - Cloudflare bypassing and CAPTCHA automation (for the browser-based API)
+- Customize bot identity and behavior (see https://github.com/RainEggplant/chatgpt-telegram-bot/issues/11)
 - User-friendly logging
 
 ## Usage
@@ -87,7 +95,7 @@ To get started, follow these steps:
     > Using the browserless API may result in charges based on the model you use, as defined in the `api.official.completionParams` (the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository.
     >
     > ~~Alternatively, if you prefer to avoid charges, you can utilize the community reverse proxy servers that mimic OpenAI's completions API. Please refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/demos/demo-reverse-proxy.ts) and [this](https://github.com/waylaidwanderer/node-chatgpt-api#using-a-reverse-proxy) for more details.~~ (This method has been patched by OpenAI. You can use the unofficial API instead.)
-  - Set `api.type` to `unofficial` if you want to use the browserless unofficial API. Then provide your OpenAI access token ([how to get your access token?](https://github.com/transitive-bullshit/chatgpt-api#access-tokens)) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi) for more details.
+  - Set `api.type` to `unofficial` if you want to use the browserless unofficial API. Then provide your OpenAI access token ([how to get your access token?](https://github.com/transitive-bullshit/chatgpt-api#access-token)) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi) for more details.
 
 Then you can start the bot with:
 
