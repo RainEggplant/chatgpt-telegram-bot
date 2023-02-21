@@ -6,7 +6,7 @@
   "configurations": [
     {
       "type": "node",
-      "runtimeArgs": ["--experimental-specifier-resolution=node"],
+      "runtimeArgs": ["--experimental-loader=extensionless"],
       "request": "launch",
       "name": "Debug",
       "skipFiles": ["<node_internals>/**"],

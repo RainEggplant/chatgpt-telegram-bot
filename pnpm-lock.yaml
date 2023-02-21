@@ -13,6 +13,7 @@ specifiers:
   dotenv: ^16.0.3
   eslint: ^8.34.0
   eslint-config-prettier: ^8.6.0
+  extensionless: ^1.1.0
   husky: ^8.0.3
   lint-staged: ^13.1.2
   lodash: ^4.17.21
@@ -27,6 +28,7 @@ dependencies:
   chatgpt-v3: registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.1
   config: registry.npmmirror.com/config/3.3.9
   dotenv: registry.npmmirror.com/dotenv/16.0.3
+  extensionless: registry.npmmirror.com/extensionless/1.1.0
   lodash: registry.npmmirror.com/lodash/4.17.21
   node-telegram-bot-api: registry.npmmirror.com/node-telegram-bot-api/0.60.0
   puppeteer: registry.npmmirror.com/puppeteer/19.7.1_typescript@4.9.5
@@ -1415,6 +1417,12 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/extend/-/extend-3.0.2.tgz}
     name: extend
     version: 3.0.2
+    dev: false
+
+  registry.npmmirror.com/extensionless/1.1.0:
+    resolution: {integrity: sha512-kx8jIACRL75Md/0YVagsEuV/27puNXXvELDgX1jecQMsj3JrVIzkrPw0mzbr0PGY9cK/4aD7e5lRzVC+t1Wkiw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/extensionless/-/extensionless-1.1.0.tgz}
+    name: extensionless
+    version: 1.1.0
     dev: false
 
   registry.npmmirror.com/extract-zip/2.0.1:

@@ -7,8 +7,8 @@
   "scripts": {
     "build": "tsc --build",
     "build:debug": "tsc --build && tsc --sourceMap",
-    "dev": "tsc-watch --onSuccess \"node --experimental-specifier-resolution=node dist/index.js\"",
-    "start": "node --experimental-specifier-resolution=node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node --experimental-loader=extensionless dist/index.js\"",
+    "start": "node --experimental-loader=extensionless dist/index.js",
     "lint": "eslint src/**/*.{js,ts}",
     "lint:fix": "eslint --fix src/**/*.{js,ts}",
     "format": "prettier --check src/**/*.{js,ts}",
@@ -49,6 +49,7 @@
     "chatgpt-v3": "npm:chatgpt@3.5.1",
     "config": "^3.3.9",
     "dotenv": "^16.0.3",
+    "extensionless": "^1.1.0",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
     "puppeteer": "^19.7.1"
