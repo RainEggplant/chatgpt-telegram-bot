@@ -25,7 +25,13 @@
       "apiKey": "API_KEY",
       "apiBaseUrl": "",
       "apiReverseProxyUrl": "",
-      "completionParams": {}
+      "completionParams": {},
+      // You can override the default (make the model behave like ChatGPT) prompt prefix and suffix
+      // (see https://github.com/RainEggplant/chatgpt-telegram-bot/issues/11)
+      "promptPrefix": "",
+      "promptSuffix": "",
+      "userLabel": "",
+      "assistantLabel": ""
     },
     "unofficial": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi"

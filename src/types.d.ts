@@ -24,6 +24,10 @@ export interface APIOfficialOptions {
   apiBaseUrl?: string;
   apiReverseProxyUrl?: string;
   completionParams?: Partial<openai.CompletionParams>;
+  promptPrefix?: string;
+  promptSuffix?: string;
+  userLabel?: string;
+  assistantLabel?: string;
   debug?: boolean;
 }
 

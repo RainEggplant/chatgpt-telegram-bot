@@ -72,10 +72,21 @@ class ChatGPT {
   ) => {
     if (!this._api) return;
 
-    const res = await this._api.sendMessage(text, {
-      ...this._context,
-      onProgress,
-    });
+    let res: ChatResponseV3 | ChatResponseV4;
+    if (this.apiType == 'official') {
+      if (!this._apiOfficial) return;
+      res = await this._apiOfficial.sendMessage(text, {
+        ...this._context,
+        onProgress,
+        promptPrefix: this._opts.official?.promptPrefix,
+        promptSuffix: this._opts.official?.promptSuffix,
+      });
+    } else {
+      res = await this._api.sendMessage(text, {
+        ...this._context,
+        onProgress,
+      });
+    }
 
     const parentMessageId =
       this.apiType == 'browser'

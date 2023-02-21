@@ -38,6 +38,11 @@ function loadConfig(): Config {
         tryGet<Partial<openai.CompletionParams>>(
           'api.official.completionParams'
         ) || undefined,
+      promptPrefix: tryGet<string>('api.official.promptPrefix') || undefined,
+      promptSuffix: tryGet<string>('api.official.promptSuffix') || undefined,
+      userLabel: tryGet<string>('api.official.userLabel') || undefined,
+      assistantLabel:
+        tryGet<string>('api.official.assistantLabel') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
   } else if (apiType == 'unofficial') {
