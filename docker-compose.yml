@@ -3,5 +3,7 @@ version: '2'
 services:
   app:
     build: .
-    env_file:
-      - .env
+    environment:
+      - CONFIG_PATH=./config/config.json
+    volumes:
+      - ./config:/app/config
