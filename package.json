@@ -34,6 +34,7 @@
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.14.0",
     "@types/node-telegram-bot-api": "^0.57.7",
+    "@types/promise-queue": "^2.2.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "eslint": "^8.34.0",
@@ -52,6 +53,7 @@
     "extensionless": "^1.1.0",
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
-    "puppeteer": "^19.7.2"
+    "puppeteer": "^19.7.2",
+    "promise-queue": "^2.2.5"
   }
 }
