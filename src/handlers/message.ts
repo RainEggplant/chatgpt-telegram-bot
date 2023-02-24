@@ -39,7 +39,13 @@ class MessageHandler {
 
     // Parse message.
     const {text, command, isMentioned} = this._parseMessage(msg);
-    if (command != '' && command != this._opts.chatCmd) {
+    const isReply = command == this._opts.replyCmd;
+    if (
+      command != '' &&
+      command != this._opts.chatCmd &&
+      command != this._opts.chatCmdAlternate &&
+      !isReply
+    ) {
       // For commands except `chatCmd`, pass the request to commandHandler.
       await this._commandHandler.handle(
         msg,
@@ -52,7 +58,18 @@ class MessageHandler {
       // - direct messages in private chats
       // - replied messages in both private chats and group chats
       // - messages that start with `chatCmd` in private chats and group chats
-      await this._chatHandler.handle(msg, text);
+      if (
+        command == this._opts.chatCmd ||
+        command == this._opts.chatCmdAlternate ||
+        isReply ||
+        msg.chat.type === 'private'
+      ) {
+        await this._chatHandler.handle(
+          msg,
+          text,
+          msg.chat.type === 'private' ? !!msg.reply_to_message?.text : isReply
+        );
+      }
     }
   };
 
