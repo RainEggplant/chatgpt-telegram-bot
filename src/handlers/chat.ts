@@ -36,7 +36,7 @@ class ChatHandler {
       logWithTime(`📩 Message from ${userInfo} in ${chatInfo}:\n${text}`);
     }
 
-    const orderLength = this._apiRequestsQueue.getQueueLength();
+    const orderLength = this._apiRequestsQueue.getQueueLength() + 1;
     // Send a message to the chat acknowledging receipt of their message
     const reply = await this._bot.sendMessage(
       chatId,
@@ -50,7 +50,7 @@ class ChatHandler {
 
     // assign queue for request
     this._requestsQueue[this._getQueueKey(chatId, reply.message_id)] =
-      this._apiRequestsQueue.getQueueLength() + 1;
+      orderLength;
 
     // add to sequence queue due to chatGPT processes only one request at a time
     await this._apiRequestsQueue.add(() => {
