@@ -36,10 +36,16 @@ class ChatHandler {
       logWithTime(`📩 Message from ${userInfo} in ${chatInfo}:\n${text}`);
     }
 
+    const orderLength = this._apiRequestsQueue.getQueueLength();
     // Send a message to the chat acknowledging receipt of their message
-    const reply = await this._bot.sendMessage(chatId, '🤔', {
-      reply_to_message_id: msg.message_id,
-    });
+    const reply = await this._bot.sendMessage(
+      chatId,
+      orderLength > 1 ? `You are #${orderLength} in order` : '🤔',
+      {
+        reply_to_message_id: msg.message_id,
+      }
+    );
+
     await this._bot.sendChatAction(chatId, 'typing');
 
     // assign queue for request
