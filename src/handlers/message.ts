@@ -40,7 +40,7 @@ class MessageHandler {
     // Parse message.
     const {text, command, isMentioned} = this._parseMessage(msg);
     if (command != '' && command != this._opts.chatCmd) {
-      // For commands except `chatCmd`, pass the request to commandHandler.
+      // For commands except `${chatCmd}`, pass the request to commandHandler.
       await this._commandHandler.handle(
         msg,
         command,

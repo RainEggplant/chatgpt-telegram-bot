@@ -54,6 +54,7 @@
     "lodash": "^4.17.21",
     "node-telegram-bot-api": "^0.60.0",
     "puppeteer": "^19.7.2",
-    "promise-queue": "^2.2.5"
+    "promise-queue": "^2.2.5",
+    "telegramify-markdown": "^1.0.5"
   }
 }
