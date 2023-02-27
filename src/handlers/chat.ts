@@ -12,9 +12,9 @@ class ChatHandler {
   protected _opts: BotOptions;
   protected _bot: TelegramBot;
   protected _api: ChatGPT;
+  protected _queueLength = 0;
   protected _apiRequestsQueue = new Queue(1, Infinity);
-  protected _requestsQueue: Record<string, number> = {};
-  protected _orderRequestsQueue = new Queue(20, Infinity);
+  protected _positionInQueue: Record<string, number> = {};
 
   constructor(bot: TelegramBot, api: ChatGPT, botOpts: BotOptions, debug = 1) {
     this.debug = debug;
@@ -36,21 +36,14 @@ class ChatHandler {
       logWithTime(`📩 Message from ${userInfo} in ${chatInfo}:\n${text}`);
     }
 
-    const orderLength = this._apiRequestsQueue.getQueueLength() + 1;
     // Send a message to the chat acknowledging receipt of their message
-    const reply = await this._bot.sendMessage(
-      chatId,
-      orderLength > 1 ? `You are #${orderLength} in order` : '🤔',
-      {
-        reply_to_message_id: msg.message_id,
-      }
-    );
-
-    await this._bot.sendChatAction(chatId, 'typing');
+    const reply = await this._bot.sendMessage(chatId, '⌛', {
+      reply_to_message_id: msg.message_id,
+    });
 
     // assign queue for request
-    this._requestsQueue[this._getQueueKey(chatId, reply.message_id)] =
-      orderLength;
+    this._positionInQueue[this._getQueueKey(chatId, reply.message_id)] = ++this
+      ._queueLength;
 
     // add to sequence queue due to chatGPT processes only one request at a time
     await this._apiRequestsQueue.add(() => {
@@ -64,9 +57,14 @@ class ChatHandler {
     originalReply: TelegramBot.Message
   ) => {
     let reply = originalReply;
+    await this._bot.editMessageText('🤔', {
+      chat_id: chatId,
+      message_id: reply.message_id,
+    });
+    await this._bot.sendChatAction(chatId, 'typing');
 
     // Update queue order before sending request to api
-    await this._updateQueue(chatId, originalReply.message_id);
+    const updatePromise = this._updateQueue(chatId, reply.message_id);
 
     // Send message to ChatGPT
     try {
@@ -99,6 +97,8 @@ class ChatHandler {
         "⚠️ Sorry, I'm having trouble connecting to the server, please try again later."
       );
     }
+
+    await updatePromise;
   };
 
   // Edit telegram message
@@ -141,22 +141,18 @@ class ChatHandler {
 
   protected _updateQueue = async (chatId: number, messageId: number) => {
     // delete value for current request
-    delete this._requestsQueue[this._getQueueKey(chatId, messageId)];
+    delete this._positionInQueue[this._getQueueKey(chatId, messageId)];
+    this._queueLength--;
 
-    for (const key in this._requestsQueue) {
+    for (const key in this._positionInQueue) {
       const {chat_id, message_id} = this._parseQueueKey(key);
-      this._requestsQueue[key]--;
-
-      // add to promise queue to avoid throttling
-      await this._orderRequestsQueue.add(() => {
-        return this._bot.editMessageText(
-          `You are #${this._requestsQueue[key]} in order`,
-          {
-            chat_id,
-            message_id: Number(message_id),
-          }
-        );
-      });
+      await this._bot.editMessageText(
+        `You are #${--this._positionInQueue[key]} in order`,
+        {
+          chat_id,
+          message_id: Number(message_id),
+        }
+      );
     }
   };
 }
