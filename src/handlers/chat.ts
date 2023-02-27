@@ -13,7 +13,8 @@ class ChatHandler {
   protected _opts: BotOptions;
   protected _bot: TelegramBot;
   protected _api: ChatGPT;
-  protected _queueLength = 0;
+  protected _n_queued = 0;
+  protected _n_pending = 0;
   protected _apiRequestsQueue = new Queue(1, Infinity);
   protected _positionInQueue: Record<string, number> = {};
 
@@ -42,14 +43,23 @@ class ChatHandler {
       reply_to_message_id: msg.message_id,
     });
 
-    // assign queue for request
-    this._positionInQueue[this._getQueueKey(chatId, reply.message_id)] = ++this
-      ._queueLength;
-
     // add to sequence queue due to chatGPT processes only one request at a time
-    await this._apiRequestsQueue.add(() => {
+    const requestPromise = this._apiRequestsQueue.add(() => {
       return this._sendToGpt(text, chatId, reply);
     });
+    if (this._n_pending == 0) this._n_pending++;
+    else this._n_queued++;
+    this._positionInQueue[this._getQueueKey(chatId, reply.message_id)] =
+      this._n_queued;
+
+    await this._bot.editMessageText(
+      this._n_queued > 0 ? `⌛: You are #${this._n_queued} in line.` : '🤔',
+      {
+        chat_id: chatId,
+        message_id: reply.message_id,
+      }
+    );
+    await requestPromise;
   };
 
   protected _sendToGpt = async (
@@ -58,14 +68,7 @@ class ChatHandler {
     originalReply: TelegramBot.Message
   ) => {
     let reply = originalReply;
-    await this._bot.editMessageText('🤔', {
-      chat_id: chatId,
-      message_id: reply.message_id,
-    });
     await this._bot.sendChatAction(chatId, 'typing');
-
-    // Update queue order before sending request to api
-    const updatePromise = this._updateQueue(chatId, reply.message_id);
 
     // Send message to ChatGPT
     try {
@@ -99,7 +102,8 @@ class ChatHandler {
       );
     }
 
-    await updatePromise;
+    // Update queue order after finishing current request
+    await this._updateQueue(chatId, reply.message_id);
   };
 
   // Edit telegram message
@@ -144,12 +148,16 @@ class ChatHandler {
   protected _updateQueue = async (chatId: number, messageId: number) => {
     // delete value for current request
     delete this._positionInQueue[this._getQueueKey(chatId, messageId)];
-    this._queueLength--;
+    if (this._n_queued > 0) this._n_queued--;
+    else this._n_pending--;
 
     for (const key in this._positionInQueue) {
       const {chat_id, message_id} = this._parseQueueKey(key);
+      this._positionInQueue[key]--;
       await this._bot.editMessageText(
-        `You are #${--this._positionInQueue[key]} in order`,
+        this._positionInQueue[key] > 0
+          ? `⌛: You are #${this._positionInQueue[key]} in line.`
+          : '🤔',
         {
           chat_id,
           message_id: Number(message_id),
