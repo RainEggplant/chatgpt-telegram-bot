@@ -2,6 +2,7 @@ import type {ChatMessage as ChatResponseV4} from 'chatgpt';
 import type {ChatResponse as ChatResponseV3} from 'chatgpt-v3';
 import _ from 'lodash';
 import type TelegramBot from 'node-telegram-bot-api';
+import telegramifyMarkdown from 'telegramify-markdown';
 import type {ChatGPT} from '../api';
 import {BotOptions} from '../types';
 import {logWithTime} from '../utils';
@@ -111,10 +112,11 @@ class ChatHandler {
       return msg;
     }
     try {
+      text = telegramifyMarkdown(text);
       const res = await this._bot.editMessageText(text, {
         chat_id: msg.chat.id,
         message_id: msg.message_id,
-        parse_mode: needParse ? 'Markdown' : undefined,
+        parse_mode: needParse ? 'MarkdownV2' : undefined,
       });
       // type of res is boolean | Message
       if (typeof res === 'object') {
