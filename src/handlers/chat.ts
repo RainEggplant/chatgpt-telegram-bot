@@ -17,6 +17,7 @@ class ChatHandler {
   protected _n_pending = 0;
   protected _apiRequestsQueue = new Queue(1, Infinity);
   protected _positionInQueue: Record<string, number> = {};
+  protected _updatePositionQueue = new Queue(20, Infinity);
 
   constructor(bot: TelegramBot, api: ChatGPT, botOpts: BotOptions, debug = 1) {
     this.debug = debug;
@@ -154,15 +155,17 @@ class ChatHandler {
     for (const key in this._positionInQueue) {
       const {chat_id, message_id} = this._parseQueueKey(key);
       this._positionInQueue[key]--;
-      await this._bot.editMessageText(
-        this._positionInQueue[key] > 0
-          ? `⌛: You are #${this._positionInQueue[key]} in line.`
-          : '🤔',
-        {
-          chat_id,
-          message_id: Number(message_id),
-        }
-      );
+      this._updatePositionQueue.add(() => {
+        return this._bot.editMessageText(
+          this._positionInQueue[key] > 0
+            ? `⌛: You are #${this._positionInQueue[key]} in line.`
+            : '🤔',
+          {
+            chat_id,
+            message_id: Number(message_id),
+          }
+        );
+      });
     }
   };
 }
