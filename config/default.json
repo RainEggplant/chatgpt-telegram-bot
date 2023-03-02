@@ -15,7 +15,6 @@
       "isGoogleLogin": false,
       "isProAccount": false,
       "executablePath": "",
-      "proxy": "",
       "nopechaKey": "",
       "captchaToken": "",
       "userDataDir": ""
@@ -24,14 +23,10 @@
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters"
       "apiKey": "API_KEY",
       "apiBaseUrl": "",
-      "apiReverseProxyUrl": "",
       "completionParams": {},
-      // You can override the default (make the model behave like ChatGPT) prompt prefix and suffix
-      // (see https://github.com/RainEggplant/chatgpt-telegram-bot/issues/11)
-      "promptPrefix": "",
-      "promptSuffix": "",
-      "userLabel": "",
-      "assistantLabel": ""
+      "systemMessage": "",
+      "maxModelTokens": 0, // set to 0 to use default
+      "maxResponseTokens": 0 // set to 0 to use default
     },
     "unofficial": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi"
@@ -39,5 +34,6 @@
       "apiReverseProxyUrl": "",
       "model": ""
     }
-  }
+  },
+  "proxy": "" // You can also specify the proxy using the environment variable "HTTP_PROXY"
 }

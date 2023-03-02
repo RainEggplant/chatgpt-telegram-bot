@@ -78,8 +78,6 @@ class ChatGPT {
       res = await this._apiOfficial.sendMessage(text, {
         ...this._context,
         onProgress,
-        promptPrefix: this._opts.official?.promptPrefix,
-        promptSuffix: this._opts.official?.promptSuffix,
       });
     } else {
       res = await this._api.sendMessage(text, {

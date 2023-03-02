@@ -1,4 +1,4 @@
-import type {openai} from 'chatgpt';
+import type {openai, FetchFn} from 'chatgpt';
 
 export interface BotOptions {
   token: string;
@@ -16,18 +16,20 @@ export interface APIBrowserOptions {
   proxyServer?: string;
   nopechaKey?: string;
   captchaToken?: string;
+  userDataDir?: string;
   debug?: boolean;
 }
 
 export interface APIOfficialOptions {
   apiKey: string;
   apiBaseUrl?: string;
-  apiReverseProxyUrl?: string;
-  completionParams?: Partial<openai.CompletionParams>;
-  promptPrefix?: string;
-  promptSuffix?: string;
-  userLabel?: string;
-  assistantLabel?: string;
+  completionParams?: Partial<
+    Omit<openai.CreateChatCompletionRequest, 'messages' | 'n'>
+  >;
+  systemMessage?: string;
+  maxModelTokens?: number;
+  maxResponseTokens?: number;
+  fetch?: FetchFn;
   debug?: boolean;
 }
 
@@ -49,4 +51,5 @@ export interface Config {
   debug: number;
   bot: BotOptions;
   api: APIOptions;
+  proxy?: string;
 }
