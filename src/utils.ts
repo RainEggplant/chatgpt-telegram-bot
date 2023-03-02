@@ -17,7 +17,6 @@ function loadConfig(): Config {
   let fetchFn: FetchFn | undefined = undefined;
   const proxy = tryGet<string>('proxy') || process.env.http_proxy;
   if (proxy) {
-    console.log('Use proxy: ' + proxy);
     const proxyAgent = new HttpsProxyAgent(proxy);
     fetchFn = ((url, opts) =>
       fetch(

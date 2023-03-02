@@ -1,6 +1,6 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-2.2.0-brightgreen)
+![badge:version](https://img.shields.io/badge/version-2.3.0-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
@@ -8,6 +8,15 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 ## Updates
 
 <strong>🎉 v2 has been released!</strong>
+
+<details open>
+  <summary><b>🔔 Mar. 02, 2023 (v2.3.0)</b></summary>
+
+  > - Support the [official OpenAI chat completions API](https://platform.openai.com/docs/guides/chat).
+  > - Support proxy by using a custom fetch function.
+
+  We strongly advice you to use the `official` API. There are rumors that OpenAI may ban your account if you continue to use the `unofficial` API.
+</details>
 
 <details open>
   <summary><b>🔔 Feb. 28, 2023 (v2.2.0)</b></summary>
@@ -80,13 +89,13 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 
 > Thank @transitive-bullshit for making this easy-to-understand table!
 
-| Type         | Free?  | Robust?  | Quality?          |
-| -------------| ------ | -------- | ----------------- |
-| `official`   | ❌ No  | ✅ Yes   | ☑️ Mimics ChatGPT |
-| `unofficial` | ✅ Yes | ☑️ Maybe | ✅ Real ChatGPT   |
-| `browser`    | ✅ Yes | ❌ No    | ✅ Real ChatGPT   |
+| Type         | Free?  | Robust?  | Quality?                |
+| -------------| ------ | -------- | ----------------------- |
+| `official`   | ❌ No  | ✅ Yes   | ✅ Real ChatGPT models |
+| `unofficial` | ✅ Yes | ☑️ Maybe | ✅ Real ChatGPT         |
+| `browser`    | ✅ Yes | ❌ No    | ✅ Real ChatGPT         |
 
-- `official`: Uses `text-davinci-003` to mimic ChatGPT via the official OpenAI completions API (most robust approach, but it's not free and doesn't use a model fine-tuned for chat)
+- `official`: Uses the `gpt-3.5-turbo` model with the official OpenAI chat completions API (official, robust approach, but it's not free)
 - `unofficial`: Uses an unofficial proxy server to access ChatGPT's backend API in a way that circumvents Cloudflare (uses the real ChatGPT and is pretty lightweight, but relies on a third-party server and is rate-limited)
 - `browser` (not recommended): Uses Puppeteer to access the official ChatGPT webapp (uses the real ChatGPT, but very flaky, heavyweight, and error prone)
 
