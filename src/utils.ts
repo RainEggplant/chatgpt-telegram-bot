@@ -1,6 +1,9 @@
-import type {openai} from 'chatgpt';
+import type {FetchFn, openai} from 'chatgpt';
 import config from 'config';
+import pkg from 'https-proxy-agent';
+import fetch, {type RequestInfo, type RequestInit} from 'node-fetch';
 import {Config} from './types';
+const {HttpsProxyAgent} = pkg;
 
 function loadConfig(): Config {
   function tryGet<T>(key: string): T | undefined {
@@ -9,6 +12,18 @@ function loadConfig(): Config {
     } else {
       return config.get<T>(key);
     }
+  }
+
+  let fetchFn: FetchFn | undefined = undefined;
+  const proxy = tryGet<string>('proxy') || process.env.http_proxy;
+  if (proxy) {
+    console.log('Use proxy: ' + proxy);
+    const proxyAgent = new HttpsProxyAgent(proxy);
+    fetchFn = ((url, opts) =>
+      fetch(
+        url as RequestInfo,
+        {...opts, agent: proxyAgent} as RequestInit
+      )) as FetchFn;
   }
 
   const apiType = config.get<'browser' | 'official' | 'unofficial'>('api.type');
@@ -22,7 +37,7 @@ function loadConfig(): Config {
       isGoogleLogin: tryGet<boolean>('api.browser.isGoogleLogin') || false,
       isProAccount: tryGet<boolean>('api.browser.isProAccount') || false,
       executablePath: tryGet<string>('api.browser.executablePath') || undefined,
-      proxyServer: tryGet<string>('api.browser.proxy') || undefined,
+      proxyServer: tryGet<string>('proxy') || undefined,
       nopechaKey: tryGet<string>('api.browser.nopechaKey') || undefined,
       captchaToken: tryGet<string>('api.browser.captchaToken') || undefined,
       userDataDir: tryGet<string>('api.browser.userDataDir') || undefined,
@@ -32,17 +47,16 @@ function loadConfig(): Config {
     apiOfficialCfg = {
       apiKey: config.get<string>('api.official.apiKey'),
       apiBaseUrl: tryGet<string>('api.official.apiBaseUrl') || undefined,
-      apiReverseProxyUrl:
-        tryGet<string>('api.official.apiReverseProxyUrl') || undefined,
       completionParams:
-        tryGet<Partial<openai.CompletionParams>>(
-          'api.official.completionParams'
-        ) || undefined,
-      promptPrefix: tryGet<string>('api.official.promptPrefix') || undefined,
-      promptSuffix: tryGet<string>('api.official.promptSuffix') || undefined,
-      userLabel: tryGet<string>('api.official.userLabel') || undefined,
-      assistantLabel:
-        tryGet<string>('api.official.assistantLabel') || undefined,
+        tryGet<
+          Partial<Omit<openai.CreateChatCompletionRequest, 'messages' | 'n'>>
+        >('api.official.completionParams') || undefined,
+      systemMessage: tryGet<string>('api.official.systemMessage') || undefined,
+      maxModelTokens:
+        tryGet<number>('api.official.maxModelTokens') || undefined,
+      maxResponseTokens:
+        tryGet<number>('api.official.maxResponseTokens') || undefined,
+      fetch: fetchFn,
       debug: config.get<number>('debug') >= 2,
     };
   } else if (apiType == 'unofficial') {
@@ -51,6 +65,7 @@ function loadConfig(): Config {
       apiReverseProxyUrl:
         tryGet<string>('api.unofficial.apiReverseProxyUrl') || undefined,
       model: tryGet<string>('api.unofficial.model') || undefined,
+      fetch: fetchFn,
       debug: config.get<number>('debug') >= 2,
     };
   } else {
@@ -71,6 +86,7 @@ function loadConfig(): Config {
       official: apiOfficialCfg,
       unofficial: apiUnofficialCfg,
     },
+    proxy: proxy,
   };
 
   return cfg;

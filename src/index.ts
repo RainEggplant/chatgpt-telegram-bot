@@ -11,7 +11,11 @@ async function main() {
   await api.init();
 
   // Initialize Telegram Bot and message handler.
-  const bot = new TelegramBot(opts.bot.token, {polling: true});
+  const bot = new TelegramBot(opts.bot.token, {
+    polling: true,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    request: {proxy: opts.proxy} as any,
+  });
   const messageHandler = new MessageHandler(bot, api, opts.bot, opts.debug);
   await messageHandler.init();
 
