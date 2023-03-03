@@ -4,4 +4,4 @@ services:
   app:
     build: .
     volumes:
-      - ./configs:/app/configs
+      - ./config:/app/config
