@@ -46,7 +46,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "chatgpt": "^5.0.4",
+    "chatgpt": "^5.0.6",
     "chatgpt-v3": "npm:chatgpt@3.5.1",
     "config": "^3.3.9",
     "dotenv": "^16.0.3",
