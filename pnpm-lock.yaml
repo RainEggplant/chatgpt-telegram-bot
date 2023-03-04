@@ -8,7 +8,7 @@ specifiers:
   '@types/promise-queue': ^2.2.0
   '@typescript-eslint/eslint-plugin': ^5.54.0
   '@typescript-eslint/parser': ^5.54.0
-  chatgpt: ^5.0.4
+  chatgpt: ^5.0.6
   chatgpt-v3: npm:chatgpt@3.5.1
   config: ^3.3.9
   dotenv: ^16.0.3
@@ -29,7 +29,7 @@ specifiers:
   typescript: ^4.9.5
 
 dependencies:
-  chatgpt: registry.npmmirror.com/chatgpt/5.0.4
+  chatgpt: registry.npmmirror.com/chatgpt/5.0.6
   chatgpt-v3: registry.npmmirror.com/chatgpt/3.5.1_puppeteer@19.7.2
   config: registry.npmmirror.com/config/3.3.9
   dotenv: registry.npmmirror.com/dotenv/16.0.3
@@ -859,10 +859,10 @@ packages:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/chatgpt/5.0.4:
-    resolution: {integrity: sha512-qkppO2IDYDJC1eaXfqupXdZcOPNqtBkToRcvr9CAGM1rdsKfBDpWLTx4Y6OMNH02sgWu48aJB//0lO1M17K58w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-5.0.4.tgz}
+  registry.npmmirror.com/chatgpt/5.0.6:
+    resolution: {integrity: sha512-BQ0eN2GpAlw9ojsxkHmW+bTuekbllZbOkKqjDSIVSMtbMoYDx59vcg6xXnCPkB0OBFGuG89eqGhLAfMIW34Hcw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/chatgpt/-/chatgpt-5.0.6.tgz}
     name: chatgpt
-    version: 5.0.4
+    version: 5.0.6
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
