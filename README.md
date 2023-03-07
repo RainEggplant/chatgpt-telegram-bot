@@ -1,7 +1,7 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-2.3.2-brightgreen)
-![docker image size](https://img.shields.io/docker/image-size/raineggplant/chatgpt-telegram-bot)
+![badge:version](https://img.shields.io/github/v/release/RainEggplant/chatgpt-telegram-bot?color=brightgreen)
+![docker image size](https://img.shields.io/docker/image-size/raineggplant/chatgpt-telegram-bot/latest?label=docker%20image%20size)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
