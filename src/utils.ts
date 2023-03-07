@@ -35,7 +35,10 @@ function loadConfig(): Config {
       password: config.get<string>('api.browser.password'),
       isGoogleLogin: tryGet<boolean>('api.browser.isGoogleLogin') || false,
       isProAccount: tryGet<boolean>('api.browser.isProAccount') || false,
-      executablePath: tryGet<string>('api.browser.executablePath') || undefined,
+      executablePath:
+        tryGet<string>('api.browser.executablePath') ||
+        process.env.PUPPETEER_EXECUTABLE_PATH ||
+        undefined,
       proxyServer: tryGet<string>('proxy') || undefined,
       nopechaKey: tryGet<string>('api.browser.nopechaKey') || undefined,
       captchaToken: tryGet<string>('api.browser.captchaToken') || undefined,

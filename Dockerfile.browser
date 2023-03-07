@@ -13,15 +13,17 @@ RUN pnpm build
 
 
 # Runner stage
-FROM node:lts-alpine
+FROM node:lts
 
+RUN apt update && apt install -y chromium xvfb
 RUN npm install -g pnpm
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --ignore-scripts --prod --no-optional
+RUN pnpm install --frozen-lockfile --ignore-scripts --prod
 
 COPY --from=builder /app/dist ./dist
 
-CMD pnpm start
+CMD xvfb-run -a --server-args="-screen 0 1280x800x24 -ac -nolisten tcp -dpi 96 +extension RANDR" pnpm start
