@@ -1,6 +1,6 @@
 # ChatGPT Telegram Bot
 
-![badge:version](https://img.shields.io/badge/version-2.3.0-brightgreen)
+![badge:version](https://img.shields.io/badge/version-2.3.2-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
@@ -10,23 +10,26 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 <strong>🎉 v2 has been released!</strong>
 
 <details open>
+  <summary><b>🔔 Mar. 07, 2023 (v2.3.2)</b></summary>
+
+  > - You can pull the [pre-built Docker image](https://hub.docker.com/r/raineggplant/chatgpt-telegram-bot) from Docker Hub now!
+
   <summary><b>🔔 Mar. 02, 2023 (v2.3.0)</b></summary>
 
   > - Support the [official OpenAI chat completions API](https://platform.openai.com/docs/guides/chat).
   > - Support proxy by using a custom fetch function.
 
-  We strongly advice you to use the `official` API. There are rumors that OpenAI may ban your account if you continue to use the `unofficial` API.
+  We strongly advice you to use the `official` API. There are rumors that OpenAI may ban your account if you continue to use the `unofficial` and `browser` API.
 </details>
 
-<details open>
+<details>
+<summary><strong>Previous Updates</strong></summary>
+<details>
   <summary><b>🔔 Feb. 28, 2023 (v2.2.0)</b></summary>
 
   > - Support message queue to avoid rate limit.
   > - Improve Markdown parsing.
 </details>
-
-<details>
-<summary><strong>Previous Updates</strong></summary>
 
 <details>
   <summary><b>🔔 Feb. 22, 2023 (v2.1.1)</b></summary>
@@ -80,7 +83,7 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 - Queue messages to avoid rate limit
 - Typing indicator, Markdown formatting, ...
 - Cloudflare bypassing and CAPTCHA automation (for the browser-based API)
-- Customize bot identity and behavior (see https://github.com/RainEggplant/chatgpt-telegram-bot/issues/11)
+- Customize bot identity and behavior (by setting `api.official.systemMessage`)
 - User-friendly logging
 
 ## Usage
@@ -99,6 +102,9 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 - `unofficial`: Uses an unofficial proxy server to access ChatGPT's backend API in a way that circumvents Cloudflare (uses the real ChatGPT and is pretty lightweight, but relies on a third-party server and is rate-limited)
 - `browser` (not recommended): Uses Puppeteer to access the official ChatGPT webapp (uses the real ChatGPT, but very flaky, heavyweight, and error prone)
 
+> **Warning**
+>
+> There are rumors that OpenAI may ban your account if you continue to use the `unofficial` and `browser` API. Use it at your own risk.
 ### Start the server
 
 #### Option 1: Node
