@@ -1,6 +1,7 @@
 # ChatGPT Telegram Bot
 
 ![badge:version](https://img.shields.io/badge/version-2.3.2-brightgreen)
+![docker image size](https://img.shields.io/docker/image-size/raineggplant/chatgpt-telegram-bot)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
@@ -13,7 +14,8 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
   <summary><b>🔔 Mar. 07, 2023 (v2.3.2)</b></summary>
 
   > - You can pull the [pre-built Docker image](https://hub.docker.com/r/raineggplant/chatgpt-telegram-bot) from Docker Hub now!
-
+</details>
+<details open>
   <summary><b>🔔 Mar. 02, 2023 (v2.3.0)</b></summary>
 
   > - Support the [official OpenAI chat completions API](https://platform.openai.com/docs/guides/chat).
