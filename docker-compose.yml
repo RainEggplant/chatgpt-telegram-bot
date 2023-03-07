@@ -1,7 +1,0 @@
-version: '2'
-
-services:
-  app:
-    build: .
-    volumes:
-      - ./config:/app/config

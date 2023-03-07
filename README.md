@@ -101,18 +101,15 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 
 ### Start the server
 
+#### Option 1: Node
 To get started, follow these steps:
 
-1. Create `local.json` under the `config/` folder. You can copy the `config/default.json` as a template.
-2. Modify the `local.json` following the instructions in the file. The settings in `local.json` will override the default settings in `default.json`.
-  - Set `api.type` to `browser` if you want to use the browser-based API. Then provide the OpenAI / Google / Microsoft credentials and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/tree/v3#authentication) and [this](https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters) for more details. Make sure you have a Chromium-based browser installed.
-  - Set `api.type` to `official` if you want to use the browserless official API. Then provide your [OpenAI API Key](https://platform.openai.com/overview) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptapi) for more details.
-    > **Warning**
-    >
-    > Using the browserless API may result in charges based on the model you use, as defined in the `api.official.completionParams` (the default value depends on the version of your `chatgpt` node module). Get more details about this from [the issue section](https://github.com/transitive-bullshit/chatgpt-api/issues) of the API repository.
-    >
-    > ~~Alternatively, if you prefer to avoid charges, you can utilize the community reverse proxy servers that mimic OpenAI's completions API. Please refer to [this](https://github.com/transitive-bullshit/chatgpt-api/blob/main/demos/demo-reverse-proxy.ts) and [this](https://github.com/waylaidwanderer/node-chatgpt-api#using-a-reverse-proxy) for more details.~~ (This method has been patched by OpenAI. You can use the unofficial API instead.)
+1. Clone this project.
+2. Create `local.json` under the `config/` folder. You can copy the `config/default.json` as a template.
+3. Modify the `local.json` following the instructions in the file. The settings in `local.json` will override the default settings in `default.json`.
+  - Set `api.type` to `official` if you want to use the browserless official API. Then provide your [OpenAI API Key](https://platform.openai.com/overview) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptapi) for more details. Note that this will cost your credits.
   - Set `api.type` to `unofficial` if you want to use the browserless unofficial API. Then provide your OpenAI access token ([how to get your access token?](https://github.com/transitive-bullshit/chatgpt-api#access-token)) and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi) for more details.
+  - Set `api.type` to `browser` if you want to use the browser-based API (not recommended). Then provide the OpenAI / Google / Microsoft credentials and other settings. You can refer to [this](https://github.com/transitive-bullshit/chatgpt-api/tree/v3#authentication) and [this](https://github.com/transitive-bullshit/chatgpt-api/blob/v3/docs/classes/ChatGPTAPIBrowser.md#parameters) for more details. Make sure you have a Chromium-based browser installed.
 
 Then you can start the bot with:
 
@@ -120,6 +117,20 @@ Then you can start the bot with:
 pnpm install
 pnpm build && pnpm start
 ```
+
+#### Option 2: Docker
+
+To get started, follow these steps:
+
+1. Create a folder named `config` and create a `local.json` file in it. You can follow the instructions in the "Choice #1: Node" section to customize the settings.
+2. Run the following command to start the bot:
+
+    ```shell
+    docker run -d -v ./config:/app/config raineggplant/chatgpt-telegram-bot:latest
+    ```
+
+    This will pull the latest image that only supports the browserless API. If you want to use the browser-based API, you can add a `-browser` suffix to the tag, e.g., `raineggplant/chatgpt-telegram-bot:latest-browser`.
+
 
 ### Chat with the bot in Telegram
 
@@ -142,7 +153,7 @@ The bot also has several commands.
 
 ## Advanced
 
-### Running the bot on a headless server (browser-based API)
+### Running the bot on a headless server (browser-based API only)
 
 You can use [Xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a virtual framebuffer on a headless server and run this program:
 
@@ -151,14 +162,6 @@ xvfb-run -a --server-args="-screen 0 1280x800x24 -nolisten tcp -dpi 96 +extensio
 ```
 
 We recommend you to use Google auth to avoid the complicated login Recaptchas. If you use a OpenAI account, you may have to use nopecha or 2captcha or manually solve the Recaptcha (by connecting to the display server using x11vnc). For more details about CAPTCHA solving, please refer to [the api repository](https://github.com/transitive-bullshit/chatgpt-api/tree/v3#captchas).
-
-#### Docker
-
-You can also try this docker image by running the following command from the project root folder:
-
-```shell
-docker compose up
-```
 
 ## Credits
 
