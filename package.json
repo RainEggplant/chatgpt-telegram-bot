@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-telegram-bot",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "description": "A ChatGPT bot for Telegram.",
   "main": "index.js",
   "type": "module",
