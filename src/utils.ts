@@ -2,7 +2,12 @@ import type {FetchFn, openai} from 'chatgpt';
 import config from 'config';
 import pkg from 'https-proxy-agent';
 import fetch, {type RequestInfo, type RequestInit} from 'node-fetch';
-import {Config} from './types';
+import {
+  Config,
+  APIBrowserOptions,
+  APIOfficialOptions,
+  APIUnofficialOptions,
+} from './types';
 const {HttpsProxyAgent} = pkg;
 
 function loadConfig(): Config {
@@ -26,9 +31,9 @@ function loadConfig(): Config {
   }
 
   const apiType = config.get<'browser' | 'official' | 'unofficial'>('api.type');
-  let apiBrowserCfg;
-  let apiOfficialCfg;
-  let apiUnofficialCfg;
+  let apiBrowserCfg: APIBrowserOptions | undefined;
+  let apiOfficialCfg: APIOfficialOptions | undefined;
+  let apiUnofficialCfg: APIUnofficialOptions | undefined;
   if (apiType == 'browser') {
     apiBrowserCfg = {
       email: config.get<string>('api.browser.email'),
@@ -43,6 +48,7 @@ function loadConfig(): Config {
       nopechaKey: tryGet<string>('api.browser.nopechaKey') || undefined,
       captchaToken: tryGet<string>('api.browser.captchaToken') || undefined,
       userDataDir: tryGet<string>('api.browser.userDataDir') || undefined,
+      timeoutMs: tryGet<number>('api.browser.timeoutMs') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
   } else if (apiType == 'official') {
@@ -58,6 +64,7 @@ function loadConfig(): Config {
         tryGet<number>('api.official.maxModelTokens') || undefined,
       maxResponseTokens:
         tryGet<number>('api.official.maxResponseTokens') || undefined,
+      timeoutMs: tryGet<number>('api.official.timeoutMs') || undefined,
       fetch: fetchFn,
       debug: config.get<number>('debug') >= 2,
     };
@@ -67,6 +74,7 @@ function loadConfig(): Config {
       apiReverseProxyUrl:
         tryGet<string>('api.unofficial.apiReverseProxyUrl') || undefined,
       model: tryGet<string>('api.unofficial.model') || undefined,
+      timeoutMs: tryGet<number>('api.unofficial.timeoutMs') || undefined,
       fetch: fetchFn,
       debug: config.get<number>('debug') >= 2,
     };

@@ -17,7 +17,8 @@
       "executablePath": "",
       "nopechaKey": "",
       "captchaToken": "",
-      "userDataDir": ""
+      "userDataDir": "",
+      "timeoutMs": 120000 // set to 0 to disable
     },
     "official": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters"
@@ -26,13 +27,15 @@
       "completionParams": {},
       "systemMessage": "",
       "maxModelTokens": 0, // set to 0 to use default
-      "maxResponseTokens": 0 // set to 0 to use default
+      "maxResponseTokens": 0, // set to 0 to use default
+      "timeoutMs": 60000 // set to 0 to disable
     },
     "unofficial": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api#usage---chatgptunofficialproxyapi"
       "accessToken": "ACCESS_TOKEN",
       "apiReverseProxyUrl": "",
-      "model": ""
+      "model": "",
+      "timeoutMs": 120000 // set to 0 to disable
     }
   },
   "proxy": "" // You can also specify the proxy using the environment variable "HTTP_PROXY"
