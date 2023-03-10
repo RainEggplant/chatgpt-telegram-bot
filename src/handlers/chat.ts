@@ -133,6 +133,7 @@ class ChatHandler {
       }
     } catch (err) {
       logWithTime('⛔️ Edit message error:', (err as Error).message);
+      if (this.debug >= 2) logWithTime('⛔️ Message text:', text);
       return msg;
     }
   };
