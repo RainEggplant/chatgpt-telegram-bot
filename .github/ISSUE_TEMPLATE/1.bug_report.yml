@@ -1,0 +1,71 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        
+  - type: checkboxes
+    attributes:
+      label: Not a duplicate issue
+      options:
+        - label: I have searched the existing issues and confirmed this issue is not a duplicate.
+          required: true
+
+  - type: checkboxes
+    attributes:
+      label: Verify ChatGPT service is operational
+      options:
+        - label: I have checked [status.openai.com](https://status.openai.com) and ChatGPT is operational.
+
+  - type: input
+    attributes:
+      label: Bot version
+      description: Please enter the version of the bot you are using.
+      placeholder: v2.0.0
+    validations:
+      required: true
+      
+  - type: dropdown
+    attributes:
+      label: API type
+      description: Please select the type(s) of API you are using.
+      multiple: true
+      options:
+        - official
+        - unofficial
+        - browser
+
+  - type: textarea
+    attributes:
+      label: Environment details
+      description: Please enter your Node.js version, operating system, and whether you are using Docker.
+    validations:
+      required: true
+      
+  - type: textarea
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is, and the expected behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior.
+
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        **Be careful not to leak your account information!**
+        If applicable, please provide logs to help diagnose your problem. You may need to set the `debug` level to 2 or higher. If the log is very long, please provide a link to [pastebin](https://pastebin.com) or a similar service. 
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.

@@ -1,0 +1,35 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: "[Feature Request]: "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an idea for this project!
+        
+  - type: checkboxes
+    attributes:
+      label: Not a duplicate feature request
+      options:
+        - label: I have searched the existing issues and confirmed this feature request is not a duplicate.
+          required: true
+
+  - type: checkboxes
+    attributes:
+      label: Supported by the upstream API
+      description: This project relies on this [API](https://github.com/transitive-bullshit/chatgpt-api) to use ChatGPT models. If the feature is not supported yet, please file a feature request in the API repo instead.
+      options:
+        - label: This feature can be implemented using the upstream API.
+
+  - type: textarea
+    attributes:
+      label: Describe the feature
+      description: Please describe the feature you would like to see implemented.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Please provide any additional context about the feature request (e.g. proposed implementation).
