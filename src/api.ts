@@ -33,11 +33,13 @@ class ChatGPT {
   protected _apiOfficial: ChatGPTAPI | undefined;
   protected _apiUnofficialProxy: ChatGPTUnofficialProxyAPI | undefined;
   protected _context: ChatContext = {};
+  protected _timeoutMs: number | undefined;
 
   constructor(apiOpts: APIOptions, debug = 1) {
     this.debug = debug;
     this.apiType = apiOpts.type;
     this._opts = apiOpts;
+    this._timeoutMs = undefined;
   }
 
   init = async () => {
@@ -48,18 +50,21 @@ class ChatGPT {
       );
       await this._apiBrowser.initSession();
       this._api = this._apiBrowser;
+      this._timeoutMs = this._opts.browser?.timeoutMs;
     } else if (this._opts.type == 'official') {
       const {ChatGPTAPI} = await import('chatgpt');
       this._apiOfficial = new ChatGPTAPI(
         this._opts.official as APIOfficialOptions
       );
       this._api = this._apiOfficial;
+      this._timeoutMs = this._opts.official?.timeoutMs;
     } else if (this._opts.type == 'unofficial') {
       const {ChatGPTUnofficialProxyAPI} = await import('chatgpt');
       this._apiUnofficialProxy = new ChatGPTUnofficialProxyAPI(
         this._opts.unofficial as APIUnofficialOptions
       );
       this._api = this._apiUnofficialProxy;
+      this._timeoutMs = this._opts.unofficial?.timeoutMs;
     } else {
       throw new RangeError('Invalid API type');
     }
@@ -78,11 +83,13 @@ class ChatGPT {
       res = await this._apiOfficial.sendMessage(text, {
         ...this._context,
         onProgress,
+        timeoutMs: this._timeoutMs,
       });
     } else {
       res = await this._api.sendMessage(text, {
         ...this._context,
         onProgress,
+        timeoutMs: this._timeoutMs,
       });
     }
 

@@ -17,6 +17,7 @@ export interface APIBrowserOptions {
   nopechaKey?: string;
   captchaToken?: string;
   userDataDir?: string;
+  timeoutMs?: number;
   debug?: boolean;
 }
 
@@ -29,6 +30,7 @@ export interface APIOfficialOptions {
   systemMessage?: string;
   maxModelTokens?: number;
   maxResponseTokens?: number;
+  timeoutMs?: number;
   fetch?: FetchFn;
   debug?: boolean;
 }
@@ -37,6 +39,8 @@ export interface APIUnofficialOptions {
   accessToken: string;
   apiReverseProxyUrl?: string;
   model?: string;
+  timeoutMs?: number;
+  fetch?: FetchFn;
   debug?: boolean;
 }
 
