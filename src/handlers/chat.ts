@@ -118,6 +118,7 @@ class ChatHandler {
     }
     try {
       text = telegramifyMarkdown(text);
+      text.replace('<!---->', ''); // temporary dirty fix for #34
       const res = await this._bot.editMessageText(text, {
         chat_id: msg.chat.id,
         message_id: msg.message_id,
