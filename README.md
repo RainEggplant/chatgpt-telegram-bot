@@ -4,6 +4,8 @@
 ![docker image size](https://img.shields.io/docker/image-size/raineggplant/chatgpt-telegram-bot/latest?label=docker%20image%20size)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
+English ｜ [中文](README_zh-CN.md)
+
 A ChatGPT bot for Telegram based on Node.js. Support both browserless and browser-based APIs.
 
 ## Updates
@@ -106,13 +108,14 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 | `unofficial` | ✅ Yes | ☑️ Maybe | ✅ Real ChatGPT         |
 | `browser`    | ✅ Yes | ❌ No    | ✅ Real ChatGPT         |
 
-- `official`: Uses the `gpt-3.5-turbo` model with the official OpenAI chat completions API (official, robust approach, but it's not free)
+- `official`: Uses the `gpt-3.5-turbo` model by default with the official OpenAI chat completions API (official, robust approach, but it's not free)
 - `unofficial`: Uses an unofficial proxy server to access ChatGPT's backend API in a way that circumvents Cloudflare (uses the real ChatGPT and is pretty lightweight, but relies on a third-party server and is rate-limited)
 - `browser` (not recommended): Uses Puppeteer to access the official ChatGPT webapp (uses the real ChatGPT, but very flaky, heavyweight, and error prone)
 
 > **Warning**
 >
 > There are rumors that OpenAI may ban your account if you continue to use the `unofficial` and `browser` API. Use it at your own risk.
+
 ### Start the server
 
 #### Option 1: Node
@@ -160,14 +163,14 @@ The bot also has several commands.
 
 - `/help`: Show help information.
 - `/reset`: Reset the current chat thread and start a new one.
-- `/reload` (admin required): Refresh the ChatGPT session.
+- `/reload` (admin required, browser-based API only): Refresh the ChatGPT session.
 
 > **Note** When using a command in a group, make sure to include a mention after the command, like `/help@chatgpt_bot`.
 
 
 ## Advanced
 
-### Running the bot on a headless server (browser-based API only)
+### Running the bot using browser-based API on a headless server
 
 You can use [Xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a virtual framebuffer on a headless server and run this program:
 
@@ -180,7 +183,7 @@ We recommend you to use Google auth to avoid the complicated login Recaptchas. I
 ## Credits
 
 - [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api): Node.js client for the unofficial ChatGPT API.
-- [ChatGPT](https://github.com/acheong08/ChatGPT): Reverse engineered ChatGPT API 
+- [ChatGPT](https://github.com/acheong08/ChatGPT): ChatGPT API for Python.
 - [Node.js Telegram Bot API](https://github.com/yagop/node-telegram-bot-api): Telegram Bot API for NodeJS.
 - [🤖️ chatbot-telegram](https://github.com/Ciyou/chatbot-telegram): Yet another telegram ChatGPT bot.
 
