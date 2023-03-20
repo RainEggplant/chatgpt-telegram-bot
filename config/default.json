@@ -4,7 +4,8 @@
     "token": "TELEGRAM_BOT_TOKEN",
     "groupIds": [], // allowed group ids, leave empty to allow all
     "userIds": [], // allowed user ids, leave empty to allow all
-    "chatCmd": "/chat"
+    "chatCmd": "/chat",
+    "queue": true
   },
   "api": {
     "type": "official", // "browser", "official", "unofficial": the type of the chatgpt api to use
