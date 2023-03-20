@@ -54,7 +54,7 @@ class CommandHandler {
 
       case '/reset':
         await this._bot.sendChatAction(msg.chat.id, 'typing');
-        await this._api.resetThread();
+        await this._api.resetThread(msg.chat.id);
         await this._bot.sendMessage(
           msg.chat.id,
           '🔄 The chat thread has been reset. New chat thread started.'
