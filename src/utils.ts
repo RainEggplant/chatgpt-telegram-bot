@@ -76,6 +76,8 @@ function loadConfig(): Config {
       model: tryGet<string>('api.unofficial.model') || undefined,
       timeoutMs: tryGet<number>('api.unofficial.timeoutMs') || undefined,
       fetch: fetchFn,
+      email: tryGet<string>('api.unofficial.email') || undefined,
+      password: tryGet<string>('api.unofficial.password') || undefined,
       debug: config.get<number>('debug') >= 2,
     };
   } else {

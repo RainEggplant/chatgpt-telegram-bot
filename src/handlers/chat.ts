@@ -7,6 +7,8 @@ import type {ChatGPT} from '../api';
 import {BotOptions} from '../types';
 import {logWithTime} from '../utils';
 import Queue from 'promise-queue';
+import promiseRetry from 'promise-retry';
+import {ChatGPTError} from 'chatgpt';
 
 class ChatHandler {
   debug: number;
@@ -68,43 +70,70 @@ class ChatHandler {
     chatId: number,
     originalReply: TelegramBot.Message
   ) => {
-    let reply = originalReply;
-    await this._bot.sendChatAction(chatId, 'typing');
-
-    // Send message to ChatGPT
     try {
-      const res = await this._api.sendMessage(
-        text,
-        _.throttle(
-          async (partialResponse: ChatResponseV3 | ChatResponseV4) => {
+      const shouldRetry =
+        this._api.apiType == 'unofficial' && this._api._authenticator;
+
+      await promiseRetry(
+        async (retry) => {
+          let reply = originalReply;
+          await this._bot.sendChatAction(chatId, 'typing');
+
+          // Send message to ChatGPT
+          try {
+            const res = await this._api.sendMessage(
+              text,
+              _.throttle(
+                async (partialResponse: ChatResponseV3 | ChatResponseV4) => {
+                  const resText =
+                    this._api.apiType == 'browser'
+                      ? (partialResponse as ChatResponseV3).response
+                      : (partialResponse as ChatResponseV4).text;
+                  reply = await this._editMessage(reply, resText);
+                  await this._bot.sendChatAction(chatId, 'typing');
+                },
+                3000,
+                {leading: true, trailing: false}
+              )
+            );
             const resText =
               this._api.apiType == 'browser'
-                ? (partialResponse as ChatResponseV3).response
-                : (partialResponse as ChatResponseV4).text;
-            reply = await this._editMessage(reply, resText);
-            await this._bot.sendChatAction(chatId, 'typing');
-          },
-          3000,
-          {leading: true, trailing: false}
-        )
-      );
-      const resText =
-        this._api.apiType == 'browser'
-          ? (res as ChatResponseV3).response
-          : (res as ChatResponseV4).text;
-      await this._editMessage(reply, resText);
+                ? (res as ChatResponseV3).response
+                : (res as ChatResponseV4).text;
+            await this._editMessage(reply, resText);
 
-      if (this.debug >= 1) logWithTime(`📨 Response:\n${resText}`);
-    } catch (err) {
-      logWithTime('⛔️ ChatGPT API error:', (err as Error).message);
+            if (this.debug >= 1) logWithTime(`📨 Response:\n${resText}`);
+          } catch (err: unknown) {
+            logWithTime('⛔️ ChatGPT API error:', (err as Error).message);
+
+            if (
+              shouldRetry &&
+              err instanceof ChatGPTError &&
+              err.statusText === 'Unauthorized'
+            ) {
+              logWithTime('🔄 Refreshing token');
+              await this._api.refreshUnofficialApi();
+              logWithTime('✅ Successfully refreshed! Retrying request...');
+              retry(err);
+            } else {
+              await this._bot.sendMessage(
+                chatId,
+                "⚠️ Sorry, I'm having trouble connecting to the server, please try again later."
+              );
+            }
+          }
+
+          // Update queue order after finishing current request
+          await this._updateQueue(chatId, reply.message_id);
+        },
+        {retries: shouldRetry ? 2 : 0}
+      );
+    } catch (e) {
       this._bot.sendMessage(
         chatId,
         "⚠️ Sorry, I'm having trouble connecting to the server, please try again later."
       );
     }
-
-    // Update queue order after finishing current request
-    await this._updateQueue(chatId, reply.message_id);
   };
 
   // Edit telegram message

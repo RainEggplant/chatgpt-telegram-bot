@@ -14,6 +14,7 @@ import {
   APIUnofficialOptions,
 } from './types';
 import {logWithTime} from './utils';
+import Authenticator from 'openai-token';
 
 interface ChatContext {
   conversationId?: string;
@@ -34,13 +35,30 @@ class ChatGPT {
   protected _apiUnofficialProxy: ChatGPTUnofficialProxyAPI | undefined;
   protected _context: ChatContext = {};
   protected _timeoutMs: number | undefined;
+  _authenticator: Authenticator | undefined;
 
   constructor(apiOpts: APIOptions, debug = 1) {
     this.debug = debug;
     this.apiType = apiOpts.type;
     this._opts = apiOpts;
     this._timeoutMs = undefined;
+    if (apiOpts.unofficial?.email && apiOpts.unofficial?.password) {
+      this._authenticator = new Authenticator(
+        apiOpts.unofficial?.email,
+        apiOpts.unofficial?.password
+      );
+    }
   }
+
+  _initUnofficialProxyApi = async (accessToken?: string) => {
+    const {ChatGPTUnofficialProxyAPI} = await import('chatgpt');
+    this._apiUnofficialProxy = new ChatGPTUnofficialProxyAPI({
+      ...(this._opts.unofficial as APIUnofficialOptions),
+      ...(accessToken ? {accessToken} : {}),
+    });
+    this._api = this._apiUnofficialProxy;
+    this._timeoutMs = this._opts.unofficial?.timeoutMs;
+  };
 
   init = async () => {
     if (this._opts.type == 'browser') {
@@ -59,12 +77,7 @@ class ChatGPT {
       this._api = this._apiOfficial;
       this._timeoutMs = this._opts.official?.timeoutMs;
     } else if (this._opts.type == 'unofficial') {
-      const {ChatGPTUnofficialProxyAPI} = await import('chatgpt');
-      this._apiUnofficialProxy = new ChatGPTUnofficialProxyAPI(
-        this._opts.unofficial as APIUnofficialOptions
-      );
-      this._api = this._apiUnofficialProxy;
-      this._timeoutMs = this._opts.unofficial?.timeoutMs;
+      await this._initUnofficialProxyApi();
     } else {
       throw new RangeError('Invalid API type');
     }
@@ -116,6 +129,19 @@ class ChatGPT {
   refreshSession = async () => {
     if (this._apiBrowser) {
       await this._apiBrowser.refreshSession();
+    }
+  };
+
+  refreshUnofficialApi = async () => {
+    if (!this._authenticator) {
+      logWithTime('⛔️ No credentials to refresh!');
+      return;
+    }
+    if (this._apiUnofficialProxy) {
+      await this._authenticator.begin();
+      const accessToken = await this._authenticator.getAccessToken();
+
+      await this._initUnofficialProxyApi(accessToken);
     }
   };
 }

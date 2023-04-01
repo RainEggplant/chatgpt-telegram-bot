@@ -23,6 +23,8 @@
     "official": {
       // Please refer to "https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/classes/ChatGPTAPI.md#parameters"
       "apiKey": "API_KEY",
+      "email": "ACCOUNT_EMAIL",
+      "password": "ACCOUNT_PASSWORD",
       "apiBaseUrl": "",
       "completionParams": {},
       "systemMessage": "",

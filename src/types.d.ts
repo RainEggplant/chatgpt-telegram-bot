@@ -42,6 +42,8 @@ export interface APIUnofficialOptions {
   timeoutMs?: number;
   fetch?: FetchFn;
   debug?: boolean;
+  email?: string;
+  password?: string;
 }
 
 export interface APIOptions {
