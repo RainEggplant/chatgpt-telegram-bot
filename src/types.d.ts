@@ -5,6 +5,7 @@ export interface BotOptions {
   userIds: number[];
   groupIds: number[];
   chatCmd: string;
+  queue: boolean;
 }
 
 export interface APIBrowserOptions {
