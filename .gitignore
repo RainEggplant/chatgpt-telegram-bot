@@ -1,3 +1,6 @@
+# IDE files
+.idea
+
 # Logs
 logs
 *.log
@@ -135,3 +138,6 @@ dist
 
 # Config files
 config/local*.json
+
+# Database files
+database
