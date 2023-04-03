@@ -14,19 +14,26 @@
 
 <strong>🎉 v2 已发布！</strong>
 <details open>
+  <summary><b>🔔 2023 年 4 月 3 日 (v2.5.0)</b></summary>
+
+  > - 支持不同用户/群组的多个会话 by @Vadko.
+  > - 支持将消息队列设置为可选 by @Vadko.  
+</details>
+
+<details>
+<summary><strong>历史更新</strong></summary>
+<details>
   <summary><b>🔔 2023 年 3 月 10 日 (v2.4.0)</b></summary>
 
   > - 添加超时机制以防止消息队列被卡住。您可以在配置文件中覆盖默认超时时间。
 </details>
 
-<details open>
+<details>
   <summary><b>🔔 2023 年 3 月 7 日 (v2.3.2)</b></summary>
 
   > - 您现在可以从 Docker Hub 拉取 [预构建的 Docker 镜像](https://hub.docker.com/r/raineggplant/chatgpt-telegram-bot) 了！
 </details>
 
-<details>
-<summary><strong>历史更新</strong></summary>
 <details>
   <summary><b>🔔 2023 年 3 月 2 日 (v2.3.0)</b></summary>
 

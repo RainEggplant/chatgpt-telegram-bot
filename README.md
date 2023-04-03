@@ -12,19 +12,26 @@ A ChatGPT bot for Telegram based on Node.js. Support both browserless and browse
 
 <strong>🎉 v2 has been released!</strong>
 <details open>
+  <summary><b>🔔 Apr. 3, 2023 (v2.5.0)</b></summary>
+
+  > - Support per-chat conversation by @Vadko.
+  > - Support setting message queue as optional by @Vadko.  
+</details>
+
+<details>
+<summary><strong>Previous Updates</strong></summary>
+<details>
   <summary><b>🔔 Mar. 10, 2023 (v2.4.0)</b></summary>
 
   > - Add a timeout mechanism to prevent the message queue from getting stuck. You can override the default timeout in the config file.
 </details>
 
-<details open>
+<details>
   <summary><b>🔔 Mar. 07, 2023 (v2.3.2)</b></summary>
 
   > - You can pull the [pre-built Docker image](https://hub.docker.com/r/raineggplant/chatgpt-telegram-bot) from Docker Hub now!
 </details>
 
-<details>
-<summary><strong>Previous Updates</strong></summary>
 <details>
   <summary><b>🔔 Mar. 02, 2023 (v2.3.0)</b></summary>
 
