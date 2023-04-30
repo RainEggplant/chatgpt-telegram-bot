@@ -2,6 +2,8 @@ import KeyvRedis from '@keyv/redis';
 import Keyv from 'keyv';
 import {ChatMessage as ChatResponseV4} from 'chatgpt';
 import {BotOptions} from './types';
+import Redis from 'ioredis';
+import {logWithTime} from './utils';
 
 interface ContextObject {
   conversationId?: string;
@@ -12,13 +14,19 @@ type Context = ContextObject | undefined;
 
 export class DB {
   protected _store: KeyvRedis | undefined;
-
+  protected _redis: Redis | undefined;
   public messageStore: Keyv<ChatResponseV4>;
   private _usersStore: Keyv<ContextObject>;
 
   constructor(botOps: BotOptions) {
     if (botOps.redisUri) {
-      this._store = new KeyvRedis(botOps.redisUri);
+      this._redis = new Redis(botOps.redisUri, {family: 6});
+      this._redis.on('ready', async () => {
+        logWithTime('📚 Redis has started...');
+        const response = await this._redis?.ping();
+        logWithTime(`🏓 Redis ping result: ${response}`);
+      });
+      this._store = new KeyvRedis(this._redis);
     }
     this.messageStore = new Keyv({
       store: this._store,
