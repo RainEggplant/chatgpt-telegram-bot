@@ -91,6 +91,7 @@ function loadConfig(): Config {
       groupIds: tryGet<number[]>('bot.groupIds') || [],
       chatCmd: tryGet<string>('bot.chatCmd') || '/chat',
       queue: config.get<boolean>('bot.queue') ?? true,
+      redisUri: config.get<string>('bot.redisUri'),
     },
     api: {
       type: apiType,
