@@ -5,7 +5,8 @@
     "groupIds": [], // allowed group ids, leave empty to allow all
     "userIds": [], // allowed user ids, leave empty to allow all
     "chatCmd": "/chat",
-    "queue": true
+    "queue": true,
+    "redisUri": ""
   },
   "api": {
     "type": "official", // "browser", "official", "unofficial": the type of the chatgpt api to use

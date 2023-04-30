@@ -6,7 +6,7 @@ import {DB} from './db';
 
 async function main() {
   const opts = loadConfig();
-  const db = new DB();
+  const db = new DB(opts.bot);
 
   // Initialize ChatGPT API.
   const api = new ChatGPT(opts.api, db);

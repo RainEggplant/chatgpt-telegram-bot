@@ -5,7 +5,7 @@ import type TelegramBot from 'node-telegram-bot-api';
 import telegramifyMarkdown from 'telegramify-markdown';
 import type {ChatGPT} from '../api';
 import {BotOptions} from '../types';
-import {logWithTime} from '../utils';
+import {generateIdFromMessage, logWithTime} from '../utils';
 import Queue from 'promise-queue';
 import {DB} from '../db';
 
@@ -57,12 +57,22 @@ class ChatHandler {
       }
     );
 
+    const sendToGpt = async () => {
+      await this._sendToGpt(
+        text,
+        chatId,
+        reply,
+        generateIdFromMessage(reply),
+        generateIdFromMessage(msg.reply_to_message)
+      );
+    };
+
     if (!this._opts.queue) {
-      await this._sendToGpt(text, chatId, reply);
+      await sendToGpt();
     } else {
       // add to sequence queue due to chatGPT processes only one request at a time
       const requestPromise = this._apiRequestsQueue.add(() => {
-        return this._sendToGpt(text, chatId, reply);
+        return sendToGpt();
       });
       if (this._n_pending == 0) this._n_pending++;
       else this._n_queued++;
@@ -83,7 +93,9 @@ class ChatHandler {
   protected _sendToGpt = async (
     text: string,
     chatId: number,
-    originalReply: TelegramBot.Message
+    originalReply: TelegramBot.Message,
+    messageId: string,
+    replyId?: string
   ) => {
     let reply = originalReply;
     await this._bot.sendChatAction(chatId, 'typing');
@@ -93,6 +105,8 @@ class ChatHandler {
       const res = await this._api.sendMessage(
         text,
         chatId,
+        messageId,
+        replyId,
         _.throttle(
           async (partialResponse: ChatResponseV3 | ChatResponseV4) => {
             const resText =

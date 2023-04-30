@@ -1,5 +1,7 @@
-import {open, RootDatabase} from 'lmdb';
-import {logWithTime} from './utils';
+import KeyvRedis from '@keyv/redis';
+import Keyv from 'keyv';
+import {ChatMessage as ChatResponseV4} from 'chatgpt';
+import {BotOptions} from './types';
 
 interface ContextObject {
   conversationId?: string;
@@ -9,37 +11,41 @@ interface ContextObject {
 type Context = ContextObject | undefined;
 
 export class DB {
-  protected _db: RootDatabase;
-  constructor() {
-    this._db = open({
-      path: 'database',
-      compression: true,
+  protected _store: KeyvRedis | undefined;
+
+  public messageStore: Keyv<ChatResponseV4>;
+  private _usersStore: Keyv<ContextObject>;
+
+  constructor(botOps: BotOptions) {
+    if (botOps.redisUri) {
+      this._store = new KeyvRedis(botOps.redisUri);
+    }
+    this.messageStore = new Keyv({
+      store: this._store,
+      namespace: 'messages',
+    });
+    this._usersStore = new Keyv({
+      store: this._store,
+      namespace: 'users',
     });
   }
+
   getContext = (chatId: number): Promise<Context> => {
-    if (this._db) {
-      return this._db.get(chatId);
-    } else {
-      logWithTime('DB is not initialised!');
-      return Promise.reject(undefined);
-    }
+    return this._usersStore.get(chatId.toString());
   };
   updateContext = async (
     chatId: number,
     newContext: Pick<ContextObject, 'conversationId'> &
       Required<Pick<ContextObject, 'parentMessageId'>>
   ) => {
-    if (this._db) {
-      await this._db.put(chatId, newContext);
-    } else {
-      logWithTime('DB is not initialised!');
-    }
+    await this._usersStore.set(chatId.toString(), newContext);
   };
   clearContext = async (chatId: number) => {
-    if (this._db) {
-      await this._db.remove(chatId);
-    } else {
-      logWithTime('DB is not initialised!');
-    }
+    await this._usersStore.delete(chatId.toString());
+  };
+  getReplyId = async (replyId: string | undefined) => {
+    if (!replyId) return undefined;
+    const reply = await this.messageStore.get(replyId);
+    return reply?.id;
   };
 }

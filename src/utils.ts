@@ -8,6 +8,7 @@ import {
   APIOfficialOptions,
   APIUnofficialOptions,
 } from './types';
+import {Message} from 'node-telegram-bot-api';
 const {HttpsProxyAgent} = pkg;
 
 function loadConfig(): Config {
@@ -108,4 +109,14 @@ function logWithTime(...args: any[]) {
   console.log(new Date().toLocaleString(), ...args);
 }
 
-export {loadConfig, logWithTime};
+function generateIdFromMessage<T extends Message | undefined = undefined>(
+  msg?: T
+): T extends Message ? string : undefined {
+  return (
+    msg
+      ? `${msg.chat.id}_${msg.message_id}_${msg.from?.id}_${msg.date}`
+      : undefined
+  ) as T extends Message ? string : undefined;
+}
+
+export {loadConfig, logWithTime, generateIdFromMessage};
