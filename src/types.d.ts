@@ -6,6 +6,7 @@ export interface BotOptions {
   groupIds: number[];
   chatCmd: string;
   queue: boolean;
+  redisUri?: string;
 }
 
 export interface APIBrowserOptions {

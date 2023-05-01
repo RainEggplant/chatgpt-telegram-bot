@@ -12,6 +12,7 @@ class MessageHandler {
   protected _opts: BotOptions;
   protected _bot: TelegramBot;
   protected _botUsername = '';
+  protected _botId: number | undefined;
   protected _api: ChatGPT;
   protected _authenticator: Authenticator;
   protected _commandHandler: CommandHandler;
@@ -35,6 +36,7 @@ class MessageHandler {
 
   init = async () => {
     this._botUsername = (await this._bot.getMe()).username ?? '';
+    this._botId = (await this._bot.getMe()).id;
     logWithTime(`🤖 Bot @${this._botUsername} has started...`);
   };
 
@@ -59,7 +61,13 @@ class MessageHandler {
       // - direct messages in private chats
       // - replied messages in both private chats and group chats
       // - messages that start with `chatCmd` in private chats and group chats
-      await this._chatHandler.handle(msg, text);
+      if (
+        command == this._opts.chatCmd ||
+        msg.chat.type == 'private' ||
+        msg.reply_to_message?.from?.id === this._botId
+      ) {
+        await this._chatHandler.handle(msg, text);
+      }
     }
   };
 
