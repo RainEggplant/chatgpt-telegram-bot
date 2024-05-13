@@ -1,4 +1,8 @@
-import {open, RootDatabase} from 'lmdb';
+import KeyvRedis from '@keyv/redis';
+import Keyv from 'keyv';
+import {ChatMessage as ChatResponseV4} from 'chatgpt';
+import {BotOptions} from './types';
+import Redis from 'ioredis';
 import {logWithTime} from './utils';
 
 interface ContextObject {
@@ -9,37 +13,47 @@ interface ContextObject {
 type Context = ContextObject | undefined;
 
 export class DB {
-  protected _db: RootDatabase;
-  constructor() {
-    this._db = open({
-      path: 'database',
-      compression: true,
+  protected _store: KeyvRedis | undefined;
+  protected _redis: Redis | undefined;
+  public messageStore: Keyv<ChatResponseV4>;
+  private _usersStore: Keyv<ContextObject>;
+
+  constructor(botOps: BotOptions) {
+    if (botOps.redisUri) {
+      this._redis = new Redis(botOps.redisUri, {family: 6});
+      this._redis.on('ready', async () => {
+        logWithTime('📚 Redis has started...');
+        const response = await this._redis?.ping();
+        logWithTime(`🏓 Redis ping result: ${response}`);
+      });
+      this._store = new KeyvRedis(this._redis);
+    }
+    this.messageStore = new Keyv({
+      store: this._store,
+      namespace: 'messages',
+    });
+    this._usersStore = new Keyv({
+      store: this._store,
+      namespace: 'users',
     });
   }
+
   getContext = (chatId: number): Promise<Context> => {
-    if (this._db) {
-      return this._db.get(chatId);
-    } else {
-      logWithTime('DB is not initialised!');
-      return Promise.reject(undefined);
-    }
+    return this._usersStore.get(chatId.toString());
   };
   updateContext = async (
     chatId: number,
     newContext: Pick<ContextObject, 'conversationId'> &
       Required<Pick<ContextObject, 'parentMessageId'>>
   ) => {
-    if (this._db) {
-      await this._db.put(chatId, newContext);
-    } else {
-      logWithTime('DB is not initialised!');
-    }
+    await this._usersStore.set(chatId.toString(), newContext);
   };
   clearContext = async (chatId: number) => {
-    if (this._db) {
-      await this._db.remove(chatId);
-    } else {
-      logWithTime('DB is not initialised!');
-    }
+    await this._usersStore.delete(chatId.toString());
+  };
+  getReplyId = async (replyId: string | undefined) => {
+    if (!replyId) return undefined;
+    const reply = await this.messageStore.get(replyId);
+    return reply?.id;
   };
 }

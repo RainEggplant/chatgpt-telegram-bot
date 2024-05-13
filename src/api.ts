@@ -50,9 +50,16 @@ class ChatGPT {
       this._timeoutMs = this._opts.browser?.timeoutMs;
     } else if (this._opts.type == 'official') {
       const {ChatGPTAPI} = await import('chatgpt');
-      this._apiOfficial = new ChatGPTAPI(
-        this._opts.official as APIOfficialOptions
-      );
+      this._apiOfficial = new ChatGPTAPI({
+        ...(this._opts.official as APIOfficialOptions),
+        getMessageById: async (id) => {
+          const message = await this._db.messageStore.get(id);
+          return message as ChatResponseV4;
+        },
+        upsertMessage: async (message) => {
+          await this._db.messageStore.set(message.id, message);
+        },
+      });
       this._api = this._apiOfficial;
       this._timeoutMs = this._opts.official?.timeoutMs;
     } else if (this._opts.type == 'unofficial') {
@@ -71,15 +78,18 @@ class ChatGPT {
   sendMessage = async (
     text: string,
     chatId: number,
+    messageId: string,
+    replyId?: string,
     onProgress?: (res: ChatResponseV3 | ChatResponseV4) => void
   ) => {
     if (!this._api) return;
 
     const contextDB = await this._db.getContext(chatId);
+    const parentIdFromReply = await this._db.getReplyId(replyId);
 
     const context = {
       conversationId: contextDB?.conversationId,
-      parentMessageId: contextDB?.parentMessageId,
+      parentMessageId: parentIdFromReply ?? contextDB?.parentMessageId,
     };
 
     let res: ChatResponseV3 | ChatResponseV4;
@@ -88,12 +98,14 @@ class ChatGPT {
       res = await this._apiOfficial.sendMessage(text, {
         ...context,
         onProgress,
+        messageId,
         timeoutMs: this._timeoutMs,
       });
     } else {
       res = await this._api.sendMessage(text, {
         ...context,
         onProgress,
+        messageId,
         timeoutMs: this._timeoutMs,
       });
     }
